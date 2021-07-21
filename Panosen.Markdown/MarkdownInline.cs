@@ -2,7 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-namespace Panosen.Markdown.Parsers.Inlines
+namespace Panosen.Markdown
 {
     /// <summary>
     /// An internal class that is the base class for all inline elements.
@@ -17,7 +17,7 @@ namespace Panosen.Markdown.Parsers.Inlines
         /// <summary>
         /// Initializes a new instance of the <see cref="MarkdownInline"/> class.
         /// </summary>
-        internal MarkdownInline(MarkdownInlineType type)
+        public MarkdownInline(MarkdownInlineType type)
         {
             Type = type;
         }

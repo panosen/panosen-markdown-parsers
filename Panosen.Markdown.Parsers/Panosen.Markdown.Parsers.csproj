@@ -11,11 +11,15 @@
     <DocumentationFile>bin\$(Configuration)\Panosen.Markdown.Parsers.xml</DocumentationFile>
     <PackageIcon>panosen.png</PackageIcon>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <RepositoryUrl>https://github.com/panosen/panosen-markdown-parsers</RepositoryUrl>
+    <RepositoryUrl>https://github.com/panosen/panosen-markdown</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="..\panosen.png" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Panosen.Markdown\Panosen.Markdown.csproj" />
   </ItemGroup>
 
 </Project>

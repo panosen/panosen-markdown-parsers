@@ -2,7 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-namespace Panosen.Markdown.Parsers.Blocks
+namespace Panosen.Markdown
 {
     /// <summary>
     /// A Block Element is an element that is a container for other structures.
@@ -17,7 +17,7 @@ namespace Panosen.Markdown.Parsers.Blocks
         /// <summary>
         /// Initializes a new instance of the <see cref="MarkdownBlock"/> class.
         /// </summary>
-        internal MarkdownBlock(MarkdownBlockType type)
+        public MarkdownBlock(MarkdownBlockType type)
         {
             Type = type;
         }
