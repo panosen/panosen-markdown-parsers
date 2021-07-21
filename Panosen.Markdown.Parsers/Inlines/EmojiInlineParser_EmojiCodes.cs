@@ -9,7 +9,7 @@ namespace Panosen.Markdown.Parsers.Inlines
     /// <summary>
     /// Represents a span containing emoji symbol.
     /// </summary>
-    public partial class EmojiInline
+    public partial class EmojiInlineParser
     {
         // Codes taken from https://gist.github.com/rxaviers/7360908
         // Ignoring not implemented symbols in Segoe UI Emoji font (e.g. :bowtie:)

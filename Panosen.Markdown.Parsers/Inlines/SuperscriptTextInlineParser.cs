@@ -4,6 +4,7 @@
 
 using System.Collections.Generic;
 using Microsoft.Toolkit.Parsers.Core;
+using Panosen.Markdown.Inlines;
 using Panosen.Markdown.Parsers.Helpers;
 
 namespace Panosen.Markdown.Parsers.Inlines
@@ -11,21 +12,8 @@ namespace Panosen.Markdown.Parsers.Inlines
     /// <summary>
     /// Represents a span containing superscript text.
     /// </summary>
-    public class SuperscriptTextInline : MarkdownInline
+    public class SuperscriptTextInlineParser
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SuperscriptTextInline"/> class.
-        /// </summary>
-        public SuperscriptTextInline()
-            : base(MarkdownInlineType.Superscript)
-        {
-        }
-
-        /// <summary>
-        /// Gets or sets the contents of the inline.
-        /// </summary>
-        public IList<MarkdownInline> Inlines { get; set; }
-
         /// <summary>
         /// Returns the chars that if found means we might have a match.
         /// </summary>
@@ -128,20 +116,6 @@ namespace Panosen.Markdown.Parsers.Inlines
                 result.Inlines = Common.ParseInlineChildren(markdown, innerStart, innerEnd);
                 return new InlineParseResult(result, start, end);
             }
-        }
-
-        /// <summary>
-        /// Converts the object into it's textual representation.
-        /// </summary>
-        /// <returns> The textual representation of this object. </returns>
-        public override string ToString()
-        {
-            if (Inlines == null)
-            {
-                return base.ToString();
-            }
-
-            return "^(" + string.Join(string.Empty, Inlines) + ")";
         }
     }
 }

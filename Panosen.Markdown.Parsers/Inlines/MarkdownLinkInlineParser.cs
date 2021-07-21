@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Toolkit.Extensions;
 using Microsoft.Toolkit.Parsers.Core;
+using Panosen.Markdown.Inlines;
 using Panosen.Markdown.Parsers.Helpers;
 
 namespace Panosen.Markdown.Parsers.Inlines
@@ -13,36 +14,8 @@ namespace Panosen.Markdown.Parsers.Inlines
     /// <summary>
     /// Represents a type of hyperlink where the text can be different from the target URL.
     /// </summary>
-    public class MarkdownLinkInline : MarkdownInline, ILinkElement
+    public class MarkdownLinkInlineParser
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MarkdownLinkInline"/> class.
-        /// </summary>
-        public MarkdownLinkInline()
-            : base(MarkdownInlineType.MarkdownLink)
-        {
-        }
-
-        /// <summary>
-        /// Gets or sets the contents of the inline.
-        /// </summary>
-        public IList<MarkdownInline> Inlines { get; set; }
-
-        /// <summary>
-        /// Gets or sets the link URL.
-        /// </summary>
-        public string Url { get; set; }
-
-        /// <summary>
-        /// Gets or sets a tooltip to display on hover.
-        /// </summary>
-        public string Tooltip { get; set; }
-
-        /// <summary>
-        /// Gets or sets the ID of a reference, if this is a reference-style link.
-        /// </summary>
-        public string ReferenceId { get; set; }
-
         /// <summary>
         /// Returns the chars that if found means we might have a match.
         /// </summary>
@@ -177,13 +150,13 @@ namespace Panosen.Markdown.Parsers.Inlines
                 if (lastUrlCharIsDoubleQuote && tooltipStart != -1)
                 {
                     // Extract the URL (resolving any escape sequences).
-                    url = TextRunInline.ResolveEscapeSequences(markdown, linkOpen, tooltipStart).TrimEnd(' ', '\t', '\r', '\n');
+                    url = TextRunInlineParser.ResolveEscapeSequences(markdown, linkOpen, tooltipStart).TrimEnd(' ', '\t', '\r', '\n');
                     tooltip = markdown.Substring(tooltipStart + 2, (linkClose - 1) - (tooltipStart + 2));
                 }
                 else
                 {
                     // Extract the URL (resolving any escape sequences).
-                    url = TextRunInline.ResolveEscapeSequences(markdown, linkOpen, linkClose);
+                    url = TextRunInlineParser.ResolveEscapeSequences(markdown, linkOpen, linkClose);
                 }
 
                 // Check the URL is okay.
@@ -228,60 +201,6 @@ namespace Panosen.Markdown.Parsers.Inlines
             }
 
             return null;
-        }
-
-        /// <summary>
-        /// If this is a reference-style link, attempts to converts it to a regular link.
-        /// </summary>
-        /// <param name="document"> The document containing the list of references. </param>
-        internal void ResolveReference(MarkdownDocument document)
-        {
-            if (document == null)
-            {
-                throw new ArgumentNullException("document");
-            }
-
-            if (ReferenceId == null)
-            {
-                return;
-            }
-
-            // Look up the reference ID.
-            var reference = document.LookUpReference(ReferenceId);
-            if (reference == null)
-            {
-                return;
-            }
-
-            // The reference was found. Check the URL is valid.
-            if (!Common.IsUrlValid(reference.Url))
-            {
-                return;
-            }
-
-            // Everything is cool when you're part of a team.
-            Url = reference.Url;
-            Tooltip = reference.Tooltip;
-            ReferenceId = null;
-        }
-
-        /// <summary>
-        /// Converts the object into it's textual representation.
-        /// </summary>
-        /// <returns> The textual representation of this object. </returns>
-        public override string ToString()
-        {
-            if (Inlines == null || Url == null)
-            {
-                return base.ToString();
-            }
-
-            if (ReferenceId != null)
-            {
-                return string.Format("[{0}][{1}]", string.Join(string.Empty, Inlines), ReferenceId);
-            }
-
-            return string.Format("[{0}]({1})", string.Join(string.Empty, Inlines), Url);
         }
     }
 }

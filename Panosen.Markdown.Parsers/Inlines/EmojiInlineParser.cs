@@ -4,6 +4,7 @@
 
 using System.Collections.Generic;
 using Microsoft.Toolkit.Parsers.Core;
+using Panosen.Markdown.Inlines;
 using Panosen.Markdown.Parsers.Helpers;
 
 namespace Panosen.Markdown.Parsers.Inlines
@@ -11,16 +12,8 @@ namespace Panosen.Markdown.Parsers.Inlines
     /// <summary>
     /// Represents a span containing emoji symbol.
     /// </summary>
-    public partial class EmojiInline : MarkdownInline, IInlineLeaf
+    public partial class EmojiInlineParser
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="EmojiInline"/> class.
-        /// </summary>
-        public EmojiInline()
-            : base(MarkdownInlineType.Emoji)
-        {
-        }
-
         /// <summary>
         /// Returns the chars that if found means we might have a match.
         /// </summary>
@@ -79,8 +72,5 @@ namespace Panosen.Markdown.Parsers.Inlines
 
             return null;
         }
-
-        /// <inheritdoc/>
-        public string Text { get; set; }
     }
 }

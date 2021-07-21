@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.Toolkit.Parsers.Core;
+using Panosen.Markdown.Inlines;
 using Panosen.Markdown.Parsers.Helpers;
 
 namespace Panosen.Markdown.Parsers.Inlines
@@ -12,53 +13,8 @@ namespace Panosen.Markdown.Parsers.Inlines
     /// <summary>
     /// Represents an embedded image.
     /// </summary>
-    public class ImageInline : MarkdownInline, IInlineLeaf
+    public class ImageInlineParser
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ImageInline"/> class.
-        /// </summary>
-        public ImageInline()
-            : base(MarkdownInlineType.Image)
-        {
-        }
-
-        /// <summary>
-        /// Gets or sets the image URL.
-        /// </summary>
-        public string Url { get; set; }
-
-        /// <summary>
-        /// Gets or sets the image Render URL.
-        /// </summary>
-        public string RenderUrl { get; set; }
-
-        /// <summary>
-        /// Gets or sets a text to display on hover.
-        /// </summary>
-        public string Tooltip { get; set; }
-
-        /// <inheritdoc/>
-        public string Text { get; set; } = string.Empty;
-
-        /// <summary>
-        /// Gets or sets the ID of a reference, if this is a reference-style link.
-        /// </summary>
-        public string ReferenceId { get; set; }
-
-        /// <summary>
-        /// Gets image width
-        /// If value is greater than 0, ImageStretch is set to UniformToFill
-        /// If both ImageWidth and ImageHeight are greater than 0, ImageStretch is set to Fill
-        /// </summary>
-        public int ImageWidth { get; internal set; }
-
-        /// <summary>
-        /// Gets image height
-        /// If value is greater than 0, ImageStretch is set to UniformToFill
-        /// If both ImageWidth and ImageHeight are greater than 0, ImageStretch is set to Fill
-        /// </summary>
-        public int ImageHeight { get; internal set; }
-
         internal static void AddTripChars(List<InlineTripCharHelper> tripCharHelpers)
         {
             tripCharHelpers.Add(new InlineTripCharHelper() { FirstChar = '!', Method = InlineParseMethod.Image });
@@ -150,8 +106,8 @@ namespace Panosen.Markdown.Parsers.Inlines
                 var imageDimensionsPos = markdown.IndexOf(" =", urlStart, pos - urlStart, StringComparison.Ordinal);
 
                 url = imageDimensionsPos > 0
-                    ? TextRunInline.ResolveEscapeSequences(markdown, urlStart + 1, imageDimensionsPos)
-                    : TextRunInline.ResolveEscapeSequences(markdown, urlStart + 1, pos);
+                    ? TextRunInlineParser.ResolveEscapeSequences(markdown, urlStart + 1, imageDimensionsPos)
+                    : TextRunInlineParser.ResolveEscapeSequences(markdown, urlStart + 1, pos);
 
                 if (imageDimensionsPos > 0)
                 {
@@ -196,64 +152,6 @@ namespace Panosen.Markdown.Parsers.Inlines
                 ImageHeight = imageHeight
             };
             return new InlineParseResult(result, start, pos + 1);
-        }
-
-        /// <summary>
-        /// If this is a reference-style link, attempts to converts it to a regular link.
-        /// </summary>
-        /// <param name="document"> The document containing the list of references. </param>
-        internal void ResolveReference(MarkdownDocument document)
-        {
-            if (document == null)
-            {
-                throw new ArgumentNullException("document");
-            }
-
-            if (ReferenceId == null)
-            {
-                return;
-            }
-
-            // Look up the reference ID.
-            var reference = document.LookUpReference(ReferenceId);
-            if (reference == null)
-            {
-                return;
-            }
-
-            // The reference was found. Check the URL is valid.
-            if (!Common.IsUrlValid(reference.Url))
-            {
-                return;
-            }
-
-            // Everything is cool when you're part of a team.
-            RenderUrl = reference.Url;
-            ReferenceId = null;
-        }
-
-        /// <summary>
-        /// Converts the object into it's textual representation.
-        /// </summary>
-        /// <returns> The textual representation of this object. </returns>
-        public override string ToString()
-        {
-            if (ImageWidth > 0 && ImageHeight > 0)
-            {
-                return string.Format("![{0}]: {1} (Width: {2}, Height: {3})", Tooltip, Url, ImageWidth, ImageHeight);
-            }
-
-            if (ImageWidth > 0)
-            {
-                return string.Format("![{0}]: {1} (Width: {2})", Tooltip, Url, ImageWidth);
-            }
-
-            if (ImageHeight > 0)
-            {
-                return string.Format("![{0}]: {1} (Height: {2})", Tooltip, Url, ImageHeight);
-            }
-
-            return string.Format("![{0}]: {1}", Tooltip, Url);
         }
     }
 }

@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Collections.Generic;
+using Panosen.Markdown.Inlines;
 using Panosen.Markdown.Parsers.Helpers;
 
 namespace Panosen.Markdown.Parsers.Inlines
@@ -11,21 +12,8 @@ namespace Panosen.Markdown.Parsers.Inlines
     /// Represents a span containing code, or other text that is to be displayed using a
     /// fixed-width font.
     /// </summary>
-    public class CodeInline : MarkdownInline, IInlineLeaf
+    public class CodeInlineParser
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CodeInline"/> class.
-        /// </summary>
-        public CodeInline()
-            : base(MarkdownInlineType.Code)
-        {
-        }
-
-        /// <summary>
-        /// Gets or sets the text to display as code.
-        /// </summary>
-        public string Text { get; set; }
-
         /// <summary>
         /// Returns the chars that if found means we might have a match.
         /// </summary>
@@ -91,20 +79,6 @@ namespace Panosen.Markdown.Parsers.Inlines
             var result = new CodeInline();
             result.Text = markdown.Substring(innerStart, innerEnd - innerStart).Trim(' ', '\t', '\r', '\n');
             return new InlineParseResult(result, start, end);
-        }
-
-        /// <summary>
-        /// Converts the object into it's textual representation.
-        /// </summary>
-        /// <returns> The textual representation of this object. </returns>
-        public override string ToString()
-        {
-            if (Text == null)
-            {
-                return base.ToString();
-            }
-
-            return "`" + Text + "`";
         }
     }
 }

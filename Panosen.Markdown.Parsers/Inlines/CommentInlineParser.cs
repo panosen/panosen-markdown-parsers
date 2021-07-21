@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Collections.Generic;
+using Panosen.Markdown.Inlines;
 using Panosen.Markdown.Parsers.Helpers;
 
 namespace Panosen.Markdown.Parsers.Inlines
@@ -10,21 +11,8 @@ namespace Panosen.Markdown.Parsers.Inlines
     /// <summary>
     /// Represents a span that contains comment.
     /// </summary>
-    internal class CommentInline : MarkdownInline, IInlineLeaf
+    internal class CommentInlineParser
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CommentInline"/> class.
-        /// </summary>
-        public CommentInline()
-            : base(MarkdownInlineType.Comment)
-        {
-        }
-
-        /// <summary>
-        /// Gets or sets the Content of the Comment.
-        /// </summary>
-        public string Text { get; set; }
-
         /// <summary>
         /// Returns the chars that if found means we might have a match.
         /// </summary>
@@ -70,15 +58,6 @@ namespace Panosen.Markdown.Parsers.Inlines
             };
 
             return new InlineParseResult(result, start, innerEnd + 3);
-        }
-
-        /// <summary>
-        /// Converts the object into it's textual representation.
-        /// </summary>
-        /// <returns> The textual representation of this object. </returns>
-        public override string ToString()
-        {
-            return "<!--" + Text + "-->";
         }
     }
 }

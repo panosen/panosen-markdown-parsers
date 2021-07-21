@@ -2,10 +2,12 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Panosen.Markdown.Inlines;
 using Panosen.Markdown.Parsers.Blocks;
+using Panosen.Markdown.Parsers.Helpers;
 using Panosen.Markdown.Parsers.Inlines;
 
 namespace Panosen.Markdown.Parsers.Render
@@ -217,7 +219,7 @@ namespace Panosen.Markdown.Parsers.Render
             }
 
             // Attempt to resolve references.
-            element.ResolveReference(Document);
+            ResolveReference(element, Document);
             if (element.Url == null)
             {
                 // The element couldn't be resolved, just render it as text.
@@ -232,7 +234,7 @@ namespace Panosen.Markdown.Parsers.Render
                     // this is an image, create Image.
                     if (!string.IsNullOrEmpty(imageInline.ReferenceId))
                     {
-                        imageInline.ResolveReference(Document);
+                        ResolveReference(imageInline, Document);
                     }
 
                     imageInline.Url = element.Url;
@@ -242,6 +244,77 @@ namespace Panosen.Markdown.Parsers.Render
             }
 
             RenderMarkdownLink(element, context);
+        }
+
+
+        /// <summary>
+        /// If this is a reference-style link, attempts to converts it to a regular link.
+        /// </summary>
+        /// <param name="document"> The document containing the list of references. </param>
+        internal void ResolveReference(MarkdownLinkInline markdownLinkInline, MarkdownDocument document)
+        {
+            if (document == null)
+            {
+                throw new ArgumentNullException("document");
+            }
+
+            if (markdownLinkInline.ReferenceId == null)
+            {
+                return;
+            }
+
+            // Look up the reference ID.
+            var reference = document.LookUpReference(markdownLinkInline.ReferenceId);
+            if (reference == null)
+            {
+                return;
+            }
+
+            // The reference was found. Check the URL is valid.
+            if (!Common.IsUrlValid(reference.Url))
+            {
+                return;
+            }
+
+            // Everything is cool when you're part of a team.
+            markdownLinkInline.Url = reference.Url;
+            markdownLinkInline.Tooltip = reference.Tooltip;
+            markdownLinkInline.ReferenceId = null;
+        }
+
+
+        /// <summary>
+        /// If this is a reference-style link, attempts to converts it to a regular link.
+        /// </summary>
+        /// <param name="document"> The document containing the list of references. </param>
+        internal void ResolveReference(ImageInline imageInline, MarkdownDocument document)
+        {
+            if (document == null)
+            {
+                throw new ArgumentNullException("document");
+            }
+
+            if (imageInline.ReferenceId == null)
+            {
+                return;
+            }
+
+            // Look up the reference ID.
+            var reference = document.LookUpReference(imageInline.ReferenceId);
+            if (reference == null)
+            {
+                return;
+            }
+
+            // The reference was found. Check the URL is valid.
+            if (!Common.IsUrlValid(reference.Url))
+            {
+                return;
+            }
+
+            // Everything is cool when you're part of a team.
+            imageInline.RenderUrl = reference.Url;
+            imageInline.ReferenceId = null;
         }
 
         /// <summary>

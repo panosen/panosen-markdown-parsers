@@ -96,7 +96,7 @@ namespace Panosen.Markdown.Parsers.Blocks
                 pos++;
             }
 
-            string url = TextRunInline.ResolveEscapeSequences(markdown, urlStart, pos);
+            string url = TextRunInlineParser.ResolveEscapeSequences(markdown, urlStart, pos);
 
             // Ignore leading '<' and trailing '>'.
             url = url.TrimStart('<').TrimEnd('>');

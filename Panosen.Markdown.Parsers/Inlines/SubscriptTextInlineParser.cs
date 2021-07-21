@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Toolkit.Parsers.Core;
+using Panosen.Markdown.Inlines;
 using Panosen.Markdown.Parsers.Helpers;
 
 namespace Panosen.Markdown.Parsers.Inlines
@@ -13,21 +14,8 @@ namespace Panosen.Markdown.Parsers.Inlines
     /// <summary>
     /// Represents a span containing subscript text.
     /// </summary>
-    public class SubscriptTextInline : MarkdownInline
+    public class SubscriptTextInlineParser
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SubscriptTextInline"/> class.
-        /// </summary>
-        public SubscriptTextInline()
-            : base(MarkdownInlineType.Subscript)
-        {
-        }
-
-        /// <summary>
-        /// Gets or sets the contents of the inline.
-        /// </summary>
-        public IList<MarkdownInline> Inlines { get; set; }
-
         /// <summary>
         /// Returns the chars that if found means we might have a match.
         /// </summary>
@@ -76,20 +64,6 @@ namespace Panosen.Markdown.Parsers.Inlines
             var result = new SubscriptTextInline();
             result.Inlines = Common.ParseInlineChildren(markdown, innerStart, innerEnd);
             return new InlineParseResult(result, start, innerEnd + 6);
-        }
-
-        /// <summary>
-        /// Converts the object into it's textual representation.
-        /// </summary>
-        /// <returns> The textual representation of this object. </returns>
-        public override string ToString()
-        {
-            if (Inlines == null)
-            {
-                return base.ToString();
-            }
-
-            return "<sub>" + string.Join(string.Empty, Inlines) + "</sub>";
         }
     }
 }
