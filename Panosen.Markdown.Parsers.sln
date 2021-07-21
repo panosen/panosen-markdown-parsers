@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31423.177
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Toolkit.Parsers", "Microsoft.Toolkit.Parsers\Microsoft.Toolkit.Parsers.csproj", "{08BB5274-18FD-47C5-9DF2-D4A6778A7EED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Toolkit.Parsers", "Panosen.Markdown.Parsers\Panosen.Markdown.Parsers.csproj", "{08BB5274-18FD-47C5-9DF2-D4A6778A7EED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
