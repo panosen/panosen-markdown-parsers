@@ -4,9 +4,9 @@
 
 using System.Collections.Generic;
 using Microsoft.Toolkit.Parsers.Core;
-using Microsoft.Toolkit.Parsers.Markdown.Helpers;
+using Panosen.Markdown.Parsers.Helpers;
 
-namespace Microsoft.Toolkit.Parsers.Markdown.Inlines
+namespace Panosen.Markdown.Parsers.Inlines
 {
     /// <summary>
     /// Represents a span containing emoji symbol.

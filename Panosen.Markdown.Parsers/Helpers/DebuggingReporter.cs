@@ -4,7 +4,7 @@
 
 using System.Diagnostics;
 
-namespace Microsoft.Toolkit.Parsers.Markdown.Helpers
+namespace Panosen.Markdown.Parsers.Helpers
 {
     /// <summary>
     /// Reports an error during debugging.

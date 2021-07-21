@@ -3,9 +3,9 @@
 // See the LICENSE file in the project root for more information.
 
 using Microsoft.Toolkit.Parsers.Core;
-using Microsoft.Toolkit.Parsers.Markdown.Inlines;
+using Panosen.Markdown.Parsers.Inlines;
 
-namespace Microsoft.Toolkit.Parsers.Markdown.Blocks
+namespace Panosen.Markdown.Parsers.Blocks
 {
     /// <summary>
     /// Represents the target of a reference ([ref][]).

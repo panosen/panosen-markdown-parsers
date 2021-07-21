@@ -5,9 +5,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Toolkit.Parsers.Markdown.Inlines;
+using Panosen.Markdown.Parsers.Inlines;
 
-namespace Microsoft.Toolkit.Parsers.Markdown.Helpers
+namespace Panosen.Markdown.Parsers.Helpers
 {
     /// <summary>
     /// Helpers for Markdown.

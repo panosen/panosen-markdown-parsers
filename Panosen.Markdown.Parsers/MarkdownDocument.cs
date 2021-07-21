@@ -6,10 +6,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.Toolkit.Parsers.Markdown.Blocks;
-using Microsoft.Toolkit.Parsers.Markdown.Helpers;
+using Panosen.Markdown.Parsers.Blocks;
+using Panosen.Markdown.Parsers.Helpers;
 
-namespace Microsoft.Toolkit.Parsers.Markdown
+namespace Panosen.Markdown.Parsers
 {
     /// <summary>
     /// Represents a Markdown Document. <para/>

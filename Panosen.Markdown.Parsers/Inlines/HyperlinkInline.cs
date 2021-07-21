@@ -5,9 +5,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Toolkit.Parsers.Markdown.Helpers;
+using Panosen.Markdown.Parsers.Helpers;
 
-namespace Microsoft.Toolkit.Parsers.Markdown.Inlines
+namespace Panosen.Markdown.Parsers.Inlines
 {
     /// <summary>
     /// Represents a type of hyperlink where the text and the target URL cannot be controlled

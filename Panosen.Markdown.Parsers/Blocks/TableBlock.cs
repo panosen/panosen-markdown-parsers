@@ -5,10 +5,10 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.Toolkit.Parsers.Core;
-using Microsoft.Toolkit.Parsers.Markdown.Helpers;
-using Microsoft.Toolkit.Parsers.Markdown.Inlines;
+using Panosen.Markdown.Parsers.Helpers;
+using Panosen.Markdown.Parsers.Inlines;
 
-namespace Microsoft.Toolkit.Parsers.Markdown.Blocks
+namespace Panosen.Markdown.Parsers.Blocks
 {
     /// <summary>
     /// Represents a block which contains tabular data.

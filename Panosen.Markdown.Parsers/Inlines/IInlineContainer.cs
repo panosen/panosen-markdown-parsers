@@ -4,7 +4,7 @@
 
 using System.Collections.Generic;
 
-namespace Microsoft.Toolkit.Parsers.Markdown.Inlines
+namespace Panosen.Markdown.Parsers.Inlines
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="IInlineContainer"/> class.

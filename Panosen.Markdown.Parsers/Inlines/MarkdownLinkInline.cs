@@ -6,9 +6,9 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Toolkit.Extensions;
 using Microsoft.Toolkit.Parsers.Core;
-using Microsoft.Toolkit.Parsers.Markdown.Helpers;
+using Panosen.Markdown.Parsers.Helpers;
 
-namespace Microsoft.Toolkit.Parsers.Markdown.Inlines
+namespace Panosen.Markdown.Parsers.Inlines
 {
     /// <summary>
     /// Represents a type of hyperlink where the text can be different from the target URL.

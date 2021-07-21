@@ -3,9 +3,9 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Collections.Generic;
-using Microsoft.Toolkit.Parsers.Markdown.Helpers;
+using Panosen.Markdown.Parsers.Helpers;
 
-namespace Microsoft.Toolkit.Parsers.Markdown.Inlines
+namespace Panosen.Markdown.Parsers.Inlines
 {
     /// <summary>
     /// Represents a span that contains comment.
