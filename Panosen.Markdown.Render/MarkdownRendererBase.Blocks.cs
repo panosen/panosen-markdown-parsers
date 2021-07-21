@@ -3,7 +3,6 @@
 // See the LICENSE file in the project root for more information.
 
 using Panosen.Markdown.Blocks;
-using Panosen.Markdown.Parsers.Blocks;
 
 namespace Panosen.Markdown.Parsers.Render
 {

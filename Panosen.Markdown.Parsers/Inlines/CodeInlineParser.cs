@@ -4,9 +4,9 @@
 
 using System.Collections.Generic;
 using Panosen.Markdown.Inlines;
-using Panosen.Markdown.Parsers.Helpers;
+using Panosen.Markdown.Parser.Helpers;
 
-namespace Panosen.Markdown.Parsers.Inlines
+namespace Panosen.Markdown.Parser.Inlines
 {
     /// <summary>
     /// Represents a span containing code, or other text that is to be displayed using a

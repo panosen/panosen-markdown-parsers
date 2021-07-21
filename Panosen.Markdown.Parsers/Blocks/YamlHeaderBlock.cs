@@ -5,9 +5,9 @@
 using System;
 using System.Collections.Generic;
 using Panosen.Markdown.Blocks;
-using Panosen.Markdown.Parsers.Helpers;
+using Panosen.Markdown.Parser.Helpers;
 
-namespace Panosen.Markdown.Parsers.Blocks
+namespace Panosen.Markdown.Parser.Blocks
 {
     /// <summary>
     /// Yaml Header. use for blog.

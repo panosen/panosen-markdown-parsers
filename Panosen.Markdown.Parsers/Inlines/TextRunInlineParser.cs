@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Panosen.Markdown.Parsers.Inlines
+namespace Panosen.Markdown.Parser.Inlines
 {
     /// <summary>
     /// Represents a span containing plain text.

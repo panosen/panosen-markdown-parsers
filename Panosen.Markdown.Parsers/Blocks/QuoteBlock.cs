@@ -5,7 +5,7 @@
 using Panosen.Markdown.Blocks;
 using System.Collections.Generic;
 
-namespace Panosen.Markdown.Parsers.Blocks
+namespace Panosen.Markdown.Parser.Blocks
 {
     /// <summary>
     /// Represents a block that is displayed using a quote style.  Quotes are used to indicate
@@ -27,7 +27,7 @@ namespace Panosen.Markdown.Parsers.Blocks
             var result = new QuoteBlock();
 
             // Recursively call into the markdown block parser.
-            result.Blocks = MarkdownDocument.Parse(markdown, startOfLine, maxEnd, quoteDepth: quoteDepth + 1, actualEnd: out actualEnd);
+            result.Blocks = MarkdownDocumentParser.Parse(markdown, startOfLine, maxEnd, quoteDepth: quoteDepth + 1, actualEnd: out actualEnd);
 
             return result;
         }

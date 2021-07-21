@@ -4,10 +4,10 @@
 
 using System.Collections.Generic;
 using Panosen.Markdown.Blocks;
-using Panosen.Markdown.Parsers.Helpers;
-using Panosen.Markdown.Parsers.Inlines;
+using Panosen.Markdown.Parser.Helpers;
+using Panosen.Markdown.Parser.Inlines;
 
-namespace Panosen.Markdown.Parsers.Blocks
+namespace Panosen.Markdown.Parser.Blocks
 {
     /// <summary>
     /// Represents a block of text that is displayed as a single paragraph.

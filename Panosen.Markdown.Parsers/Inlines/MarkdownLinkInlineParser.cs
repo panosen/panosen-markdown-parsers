@@ -6,10 +6,11 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Toolkit.Extensions;
 using Microsoft.Toolkit.Parsers.Core;
+using Panosen.Markdown.Helper;
 using Panosen.Markdown.Inlines;
-using Panosen.Markdown.Parsers.Helpers;
+using Panosen.Markdown.Parser.Helpers;
 
-namespace Panosen.Markdown.Parsers.Inlines
+namespace Panosen.Markdown.Parser.Inlines
 {
     /// <summary>
     /// Represents a type of hyperlink where the text can be different from the target URL.
@@ -162,7 +163,7 @@ namespace Panosen.Markdown.Parsers.Inlines
                 // Check the URL is okay.
                 if (!url.IsEmail())
                 {
-                    if (!Common.IsUrlValid(url))
+                    if (!UrlHelper.IsUrlValid(url))
                     {
                         return null;
                     }

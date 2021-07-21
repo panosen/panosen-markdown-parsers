@@ -5,7 +5,7 @@
 using Microsoft.Toolkit.Parsers.Core;
 using Panosen.Markdown.Blocks;
 
-namespace Panosen.Markdown.Parsers.Blocks
+namespace Panosen.Markdown.Parser.Blocks
 {
     /// <summary>
     /// Represents a horizontal line.

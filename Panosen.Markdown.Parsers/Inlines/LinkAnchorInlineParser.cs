@@ -5,9 +5,9 @@
 using System.Collections.Generic;
 using System.Xml.Linq;
 using Panosen.Markdown.Inlines;
-using Panosen.Markdown.Parsers.Helpers;
+using Panosen.Markdown.Parser.Helpers;
 
-namespace Panosen.Markdown.Parsers.Inlines
+namespace Panosen.Markdown.Parser.Inlines
 {
     /// <summary>
     /// Represents a span that contains a reference for links to point to.

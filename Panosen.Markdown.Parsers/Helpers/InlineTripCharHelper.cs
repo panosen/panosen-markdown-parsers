@@ -2,7 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-namespace Panosen.Markdown.Parsers.Helpers
+namespace Panosen.Markdown.Parser.Helpers
 {
     /// <summary>
     /// A helper class for the trip chars. This is an optimization. If we ask each class to go

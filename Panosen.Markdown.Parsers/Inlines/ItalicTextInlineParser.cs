@@ -5,9 +5,9 @@
 using System.Collections.Generic;
 using Microsoft.Toolkit.Parsers.Core;
 using Panosen.Markdown.Inlines;
-using Panosen.Markdown.Parsers.Helpers;
+using Panosen.Markdown.Parser.Helpers;
 
-namespace Panosen.Markdown.Parsers.Inlines
+namespace Panosen.Markdown.Parser.Inlines
 {
     /// <summary>
     /// Represents a span containing italic text.

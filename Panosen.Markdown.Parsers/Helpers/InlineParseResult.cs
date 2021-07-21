@@ -2,9 +2,9 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using Panosen.Markdown.Parsers.Inlines;
+using Panosen.Markdown.Parser.Inlines;
 
-namespace Panosen.Markdown.Parsers.Helpers
+namespace Panosen.Markdown.Parser.Helpers
 {
     /// <summary>
     /// Represents the result of parsing an inline element.

@@ -5,10 +5,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Panosen.Markdown.Helper;
 using Panosen.Markdown.Inlines;
-using Panosen.Markdown.Parsers.Helpers;
+using Panosen.Markdown.Parser.Helpers;
 
-namespace Panosen.Markdown.Parsers.Inlines
+namespace Panosen.Markdown.Parser.Inlines
 {
     /// <summary>
     /// Represents a type of hyperlink where the text and the target URL cannot be controlled
@@ -41,7 +42,7 @@ namespace Panosen.Markdown.Parsers.Inlines
 
             // Check for a known scheme e.g. "https://".
             int pos = -1;
-            foreach (var scheme in MarkdownDocument.KnownSchemes)
+            foreach (var scheme in Constant.KnownSchemes)
             {
                 if (maxEnd - innerStart >= scheme.Length && string.Equals(markdown.Substring(innerStart, scheme.Length), scheme, StringComparison.OrdinalIgnoreCase))
                 {
@@ -85,7 +86,7 @@ namespace Panosen.Markdown.Parsers.Inlines
             int start = -1;
 
             // Check for a known scheme e.g. "https://".
-            foreach (var scheme in MarkdownDocument.KnownSchemes)
+            foreach (var scheme in Constant.KnownSchemes)
             {
                 int schemeStart = tripPos - scheme.Length;
                 if (schemeStart >= 0 && schemeStart <= maxEnd - scheme.Length && string.Equals(markdown.Substring(schemeStart, scheme.Length), scheme, StringComparison.OrdinalIgnoreCase))

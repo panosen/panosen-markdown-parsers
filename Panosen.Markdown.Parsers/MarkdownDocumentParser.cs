@@ -7,73 +7,51 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Panosen.Markdown.Blocks;
-using Panosen.Markdown.Parsers.Blocks;
-using Panosen.Markdown.Parsers.Helpers;
+using Panosen.Markdown.Parser.Blocks;
+using Panosen.Markdown.Parser.Helpers;
 
-namespace Panosen.Markdown.Parsers
+namespace Panosen.Markdown.Parser
 {
     /// <summary>
     /// Represents a Markdown Document. <para/>
     /// Initialize an instance and call <see cref="Parse(string)"/> to parse the Raw Markdown Text.
     /// </summary>
-    public class MarkdownDocument : MarkdownBlock
+    public class MarkdownDocumentParser
     {
-        /// <summary>
-        /// Root
-        /// </summary>
-        public override MarkdownBlockType Type => MarkdownBlockType.Root;
-
-        /// <summary>
-        /// Gets a list of URL schemes.
-        /// </summary>
-        public static List<string> KnownSchemes { get; private set; } = new List<string>()
-        {
-            "http",
-            "https",
-            "ftp",
-            "steam",
-            "irc",
-            "news",
-            "mumble",
-            "ssh",
-            "ms-windows-store",
-            "sip"
-        };
-
         private Dictionary<string, LinkReferenceBlock> _references;
-
-        /// <summary>
-        /// Gets or sets the list of block elements.
-        /// </summary>
-        public IList<MarkdownBlock> Blocks { get; set; }
 
         /// <summary>
         /// Parses markdown document text.
         /// </summary>
         /// <param name="markdownText"> The markdown text. </param>
-        public void Parse(string markdownText)
+        public MarkdownDocument Parse(string markdownText)
         {
-            Blocks = Parse(markdownText, 0, markdownText.Length, quoteDepth: 0, actualEnd: out _);
+            MarkdownDocument markdownDocument = new MarkdownDocument();
+
+            markdownDocument.Blocks = Parse(markdownText, 0, markdownText.Length, quoteDepth: 0, actualEnd: out _);
 
             // Remove any references from the list of blocks, and add them to a dictionary.
-            for (int i = Blocks.Count - 1; i >= 0; i--)
+            for (int i = markdownDocument.Blocks.Count - 1; i >= 0; i--)
             {
-                if (Blocks[i].Type == MarkdownBlockType.LinkReference)
+                if (markdownDocument.Blocks[i].Type != MarkdownBlockType.LinkReference)
                 {
-                    var reference = (LinkReferenceBlock)Blocks[i];
-                    if (_references == null)
-                    {
-                        _references = new Dictionary<string, LinkReferenceBlock>(StringComparer.OrdinalIgnoreCase);
-                    }
-
-                    if (!_references.ContainsKey(reference.Id))
-                    {
-                        _references.Add(reference.Id, reference);
-                    }
-
-                    Blocks.RemoveAt(i);
+                    continue;
                 }
+                var reference = (LinkReferenceBlock)markdownDocument.Blocks[i];
+                if (_references == null)
+                {
+                    _references = new Dictionary<string, LinkReferenceBlock>(StringComparer.OrdinalIgnoreCase);
+                }
+
+                if (!_references.ContainsKey(reference.Id))
+                {
+                    _references.Add(reference.Id, reference);
+                }
+
+                markdownDocument.Blocks.RemoveAt(i);
             }
+
+            return markdownDocument;
         }
 
         /// <summary>
@@ -370,47 +348,6 @@ namespace Panosen.Markdown.Parsers
 
             actualEnd = startOfLine;
             return blocks;
-        }
-
-        /// <summary>
-        /// Looks up a reference using the ID.
-        /// A reference is a line that looks like this:
-        /// [foo]: http://example.com/
-        /// </summary>
-        /// <param name="id"> The ID of the reference (case insensitive). </param>
-        /// <returns> The reference details, or <c>null</c> if the reference wasn't found. </returns>
-        public LinkReferenceBlock LookUpReference(string id)
-        {
-            if (id == null)
-            {
-                throw new ArgumentNullException("id");
-            }
-
-            if (_references == null)
-            {
-                return null;
-            }
-
-            if (_references.TryGetValue(id, out LinkReferenceBlock result))
-            {
-                return result;
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        /// Converts the object into it's textual representation.
-        /// </summary>
-        /// <returns> The textual representation of this object. </returns>
-        public override string ToString()
-        {
-            if (Blocks == null)
-            {
-                return base.ToString();
-            }
-
-            return string.Join("\r\n", Blocks);
         }
     }
 }

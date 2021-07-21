@@ -2,13 +2,13 @@
 
   <PropertyGroup>
     <TargetFrameworks>net472;netstandard2.0</TargetFrameworks>
-    <AssemblyName>Panosen.Markdown.Parsers</AssemblyName>
-    <RootNamespace>Panosen.Markdown.Parsers</RootNamespace>
+    <AssemblyName>Panosen.Markdown.Parser</AssemblyName>
+    <RootNamespace>Panosen.Markdown.Parser</RootNamespace>
     <Version>0.1.1</Version>
     <Authors>harriszhang@live.cn</Authors>
     <Company>harriszhang@live.cn</Company>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <DocumentationFile>bin\$(Configuration)\Panosen.Markdown.Parsers.xml</DocumentationFile>
+    <DocumentationFile>bin\$(Configuration)\Panosen.Markdown.Parser.xml</DocumentationFile>
     <PackageIcon>panosen.png</PackageIcon>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/panosen/panosen-markdown</RepositoryUrl>
@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Panosen.Markdown.Helper\Panosen.Markdown.Helper.csproj" />
     <ProjectReference Include="..\Panosen.Markdown\Panosen.Markdown.csproj" />
   </ItemGroup>
 

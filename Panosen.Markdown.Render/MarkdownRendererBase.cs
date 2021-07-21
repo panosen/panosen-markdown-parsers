@@ -6,10 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Panosen.Markdown.Blocks;
+using Panosen.Markdown.Helper;
 using Panosen.Markdown.Inlines;
-using Panosen.Markdown.Parsers.Blocks;
-using Panosen.Markdown.Parsers.Helpers;
-using Panosen.Markdown.Parsers.Inlines;
 
 namespace Panosen.Markdown.Parsers.Render
 {
@@ -264,14 +262,14 @@ namespace Panosen.Markdown.Parsers.Render
             }
 
             // Look up the reference ID.
-            var reference = document.LookUpReference(markdownLinkInline.ReferenceId);
+            var reference = LookUpReference(document, markdownLinkInline.ReferenceId);
             if (reference == null)
             {
                 return;
             }
 
             // The reference was found. Check the URL is valid.
-            if (!Common.IsUrlValid(reference.Url))
+            if (!UrlHelper.IsUrlValid(reference.Url))
             {
                 return;
             }
@@ -280,6 +278,33 @@ namespace Panosen.Markdown.Parsers.Render
             markdownLinkInline.Url = reference.Url;
             markdownLinkInline.Tooltip = reference.Tooltip;
             markdownLinkInline.ReferenceId = null;
+        }
+
+        /// <summary>
+        /// Looks up a reference using the ID.
+        /// A reference is a line that looks like this:
+        /// [foo]: http://example.com/
+        /// </summary>
+        /// <param name="id"> The ID of the reference (case insensitive). </param>
+        /// <returns> The reference details, or <c>null</c> if the reference wasn't found. </returns>
+        public LinkReferenceBlock LookUpReference(MarkdownDocument markdownDocument, string id)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException("id");
+            }
+
+            if (markdownDocument.References == null)
+            {
+                return null;
+            }
+
+            if (markdownDocument.References.TryGetValue(id, out LinkReferenceBlock result))
+            {
+                return result;
+            }
+
+            return null;
         }
 
 
@@ -299,14 +324,14 @@ namespace Panosen.Markdown.Parsers.Render
             }
 
             // Look up the reference ID.
-            var reference = document.LookUpReference(imageInline.ReferenceId);
+            var reference = LookUpReference(document, imageInline.ReferenceId);
             if (reference == null)
             {
                 return;
             }
 
             // The reference was found. Check the URL is valid.
-            if (!Common.IsUrlValid(reference.Url))
+            if (!UrlHelper.IsUrlValid(reference.Url))
             {
                 return;
             }

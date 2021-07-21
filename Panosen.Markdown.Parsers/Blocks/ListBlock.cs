@@ -9,9 +9,9 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Microsoft.Toolkit.Parsers.Core;
 using Panosen.Markdown.Blocks;
-using Panosen.Markdown.Parsers.Helpers;
+using Panosen.Markdown.Parser.Helpers;
 
-namespace Panosen.Markdown.Parsers.Blocks
+namespace Panosen.Markdown.Parser.Blocks
 {
     /// <summary>
     /// Represents a list, with each list item proceeded by either a number or a bullet.
@@ -321,7 +321,7 @@ namespace Panosen.Markdown.Parsers.Blocks
                         {
                             // Parse the list item as a series of blocks.
                             int actualEnd;
-                            newBlockList.AddRange(MarkdownDocument.Parse(blockText, 0, blockText.Length, quoteDepth: 0, actualEnd: out actualEnd));
+                            newBlockList.AddRange(MarkdownDocumentParser.Parse(blockText, 0, blockText.Length, quoteDepth: 0, actualEnd: out actualEnd));
                             usedBlockParser = true;
                         }
                         else
