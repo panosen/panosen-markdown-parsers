@@ -12,14 +12,6 @@ namespace Panosen.Markdown
         /// <summary>
         /// Gets or sets tells us what type this element is.
         /// </summary>
-        public MarkdownBlockType Type { get; set; }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MarkdownBlock"/> class.
-        /// </summary>
-        public MarkdownBlock(MarkdownBlockType type)
-        {
-            Type = type;
-        }
+        public abstract MarkdownBlockType Type { get; }
     }
 }

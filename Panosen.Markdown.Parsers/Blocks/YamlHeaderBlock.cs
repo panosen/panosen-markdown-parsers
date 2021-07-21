@@ -19,12 +19,9 @@ namespace Panosen.Markdown.Parsers.Blocks
     public class YamlHeaderBlock : MarkdownBlock
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="YamlHeaderBlock"/> class.
+        /// YamlHeader
         /// </summary>
-        public YamlHeaderBlock()
-            : base(MarkdownBlockType.YamlHeader)
-        {
-        }
+        public override MarkdownBlockType Type => MarkdownBlockType.YamlHeader;
 
         /// <summary>
         /// Gets or sets yaml header properties

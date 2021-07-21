@@ -14,12 +14,9 @@ namespace Panosen.Markdown.Parsers.Blocks
     public class ParagraphBlock : MarkdownBlock
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ParagraphBlock"/> class.
+        /// Paragraph
         /// </summary>
-        public ParagraphBlock()
-            : base(MarkdownBlockType.Paragraph)
-        {
-        }
+        public override MarkdownBlockType Type => MarkdownBlockType.Paragraph;
 
         /// <summary>
         /// Gets or sets the contents of the block.

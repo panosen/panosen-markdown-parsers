@@ -16,12 +16,9 @@ namespace Panosen.Markdown.Parsers.Blocks
     public class TableBlock : MarkdownBlock
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TableBlock"/> class.
+        /// Table
         /// </summary>
-        public TableBlock()
-            : base(MarkdownBlockType.Table)
-        {
-        }
+        public override MarkdownBlockType Type => MarkdownBlockType.Table;
 
         /// <summary>
         /// Gets or sets the table rows.

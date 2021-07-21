@@ -14,12 +14,9 @@ namespace Panosen.Markdown.Parsers.Blocks
     public class CodeBlock : MarkdownBlock
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CodeBlock"/> class.
+        /// Code
         /// </summary>
-        public CodeBlock()
-            : base(MarkdownBlockType.Code)
-        {
-        }
+        public override MarkdownBlockType Type => MarkdownBlockType.Code;
 
         /// <summary>
         /// Gets or sets the source code to display.

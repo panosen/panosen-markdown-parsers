@@ -17,12 +17,9 @@ namespace Panosen.Markdown.Parsers.Blocks
     public class HeaderBlock : MarkdownBlock
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="HeaderBlock"/> class.
+        /// Header
         /// </summary>
-        public HeaderBlock()
-            : base(MarkdownBlockType.Header)
-        {
-        }
+        public override MarkdownBlockType Type => MarkdownBlockType.Header;
 
         private int _headerLevel;
 

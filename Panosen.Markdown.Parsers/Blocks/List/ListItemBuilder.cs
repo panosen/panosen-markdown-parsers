@@ -8,11 +8,8 @@ namespace Panosen.Markdown.Parsers.Blocks
 {
     internal class ListItemBuilder : MarkdownBlock
     {
-        public StringBuilder Builder { get; } = new StringBuilder();
+        public override MarkdownBlockType Type => MarkdownBlockType.ListItemBuilder;
 
-        public ListItemBuilder()
-            : base(MarkdownBlockType.ListItemBuilder)
-        {
-        }
+        public StringBuilder Builder { get; } = new StringBuilder();
     }
 }

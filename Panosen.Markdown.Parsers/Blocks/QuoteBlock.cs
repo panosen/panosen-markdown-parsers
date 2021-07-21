@@ -13,12 +13,9 @@ namespace Panosen.Markdown.Parsers.Blocks
     public class QuoteBlock : MarkdownBlock
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="QuoteBlock"/> class.
+        /// Quote
         /// </summary>
-        public QuoteBlock()
-            : base(MarkdownBlockType.Quote)
-        {
-        }
+        public override MarkdownBlockType Type => MarkdownBlockType.Quote;
 
         /// <summary>
         /// Gets or sets the contents of the block.

@@ -5,13 +5,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using Microsoft.Toolkit.Parsers.Core;
 using Panosen.Markdown.Parsers.Helpers;
-
-[assembly: InternalsVisibleTo("UnitTests.UWP, PublicKey=002400000480000094000000060200000024000052534131000400000100010041753af735ae6140c9508567666c51c6ab929806adb0d210694b30ab142a060237bc741f9682e7d8d4310364b4bba4ee89cc9d3d5ce7e5583587e8ea44dca09977996582875e71fb54fa7b170798d853d5d8010b07219633bdb761d01ac924da44576d6180cdceae537973982bb461c541541d58417a3794e34f45e6f2d129e2")]
 
 namespace Panosen.Markdown.Parsers.Blocks
 {
@@ -21,12 +18,9 @@ namespace Panosen.Markdown.Parsers.Blocks
     public class ListBlock : MarkdownBlock
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ListBlock"/> class.
+        /// List
         /// </summary>
-        public ListBlock()
-            : base(MarkdownBlockType.List)
-        {
-        }
+        public override MarkdownBlockType Type => MarkdownBlockType.List;
 
         /// <summary>
         /// Gets or sets the list items.

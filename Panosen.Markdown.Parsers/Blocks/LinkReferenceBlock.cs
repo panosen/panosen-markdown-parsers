@@ -13,12 +13,9 @@ namespace Panosen.Markdown.Parsers.Blocks
     public class LinkReferenceBlock : MarkdownBlock
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="LinkReferenceBlock"/> class.
+        /// LinkReference
         /// </summary>
-        public LinkReferenceBlock()
-            : base(MarkdownBlockType.LinkReference)
-        {
-        }
+        public override MarkdownBlockType Type => MarkdownBlockType.LinkReference;
 
         /// <summary>
         /// Gets or sets the reference ID.

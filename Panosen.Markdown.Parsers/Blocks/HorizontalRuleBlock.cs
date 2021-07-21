@@ -12,12 +12,9 @@ namespace Panosen.Markdown.Parsers.Blocks
     public class HorizontalRuleBlock : MarkdownBlock
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="HorizontalRuleBlock"/> class.
+        /// HorizontalRule
         /// </summary>
-        public HorizontalRuleBlock()
-            : base(MarkdownBlockType.HorizontalRule)
-        {
-        }
+        public override MarkdownBlockType Type => MarkdownBlockType.HorizontalRule;
 
         /// <summary>
         /// Parses a horizontal rule.

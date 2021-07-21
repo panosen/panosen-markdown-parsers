@@ -18,6 +18,11 @@ namespace Panosen.Markdown.Parsers
     public class MarkdownDocument : MarkdownBlock
     {
         /// <summary>
+        /// Root
+        /// </summary>
+        public override MarkdownBlockType Type => MarkdownBlockType.Root;
+
+        /// <summary>
         /// Gets a list of URL schemes.
         /// </summary>
         public static List<string> KnownSchemes { get; private set; } = new List<string>()
@@ -35,14 +40,6 @@ namespace Panosen.Markdown.Parsers
         };
 
         private Dictionary<string, LinkReferenceBlock> _references;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MarkdownDocument"/> class.
-        /// </summary>
-        public MarkdownDocument()
-            : base(MarkdownBlockType.Root)
-        {
-        }
 
         /// <summary>
         /// Gets or sets the list of block elements.
