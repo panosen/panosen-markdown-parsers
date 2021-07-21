@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31423.177
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Toolkit.Parsers", "Panosen.Markdown.Parsers\Panosen.Markdown.Parsers.csproj", "{08BB5274-18FD-47C5-9DF2-D4A6778A7EED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Panosen.Markdown.Parsers", "Panosen.Markdown.Parsers\Panosen.Markdown.Parsers.csproj", "{08BB5274-18FD-47C5-9DF2-D4A6778A7EED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Panosen.Markdown", "Panosen.Markdown\Panosen.Markdown.csproj", "{5E6E9603-46F9-4EF9-B1AB-453D70D1261C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{08BB5274-18FD-47C5-9DF2-D4A6778A7EED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08BB5274-18FD-47C5-9DF2-D4A6778A7EED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08BB5274-18FD-47C5-9DF2-D4A6778A7EED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E6E9603-46F9-4EF9-B1AB-453D70D1261C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E6E9603-46F9-4EF9-B1AB-453D70D1261C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E6E9603-46F9-4EF9-B1AB-453D70D1261C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E6E9603-46F9-4EF9-B1AB-453D70D1261C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
