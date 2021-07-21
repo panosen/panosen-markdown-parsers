@@ -14,12 +14,9 @@ namespace Panosen.Markdown.Inlines
     public class TextRunInline : MarkdownInline
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TextRunInline"/> class.
+        /// TextRun
         /// </summary>
-        public TextRunInline()
-            : base(MarkdownInlineType.TextRun)
-        {
-        }
+        public override MarkdownInlineType Type => MarkdownInlineType.TextRun;
 
         /// <summary>
         /// Gets or sets the text for this run.

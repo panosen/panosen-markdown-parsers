@@ -12,13 +12,7 @@ namespace Panosen.Markdown.Inlines
     /// </summary>
     internal class BoldItalicTextInline : MarkdownInline
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BoldItalicTextInline"/> class.
-        /// </summary>
-        public BoldItalicTextInline()
-            : base(MarkdownInlineType.Bold)
-        {
-        }
+        public override MarkdownInlineType Type => MarkdownInlineType.Bold;
 
         /// <summary>
         /// Gets or sets the contents of the inline.

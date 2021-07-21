@@ -13,12 +13,9 @@ namespace Panosen.Markdown.Inlines
     public class SuperscriptTextInline : MarkdownInline
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SuperscriptTextInline"/> class.
+        /// Superscript
         /// </summary>
-        public SuperscriptTextInline()
-            : base(MarkdownInlineType.Superscript)
-        {
-        }
+        public override MarkdownInlineType Type => MarkdownInlineType.Superscript;
 
         /// <summary>
         /// Gets or sets the contents of the inline.

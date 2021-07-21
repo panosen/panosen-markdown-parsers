@@ -13,13 +13,9 @@ namespace Panosen.Markdown.Inlines
     public class SubscriptTextInline : MarkdownInline
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SubscriptTextInline"/> class.
-        /// &lt;sub&gt;sample&lt;/sub&gt;
+        /// Subscript
         /// </summary>
-        public SubscriptTextInline()
-            : base(MarkdownInlineType.Subscript)
-        {
-        }
+        public override MarkdownInlineType Type => MarkdownInlineType.Subscript;
 
         /// <summary>
         /// Gets or sets the contents of the inline.

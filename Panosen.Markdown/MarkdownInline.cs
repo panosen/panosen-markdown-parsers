@@ -12,14 +12,6 @@ namespace Panosen.Markdown
         /// <summary>
         /// Gets or sets this element is.
         /// </summary>
-        public MarkdownInlineType Type { get; set; }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MarkdownInline"/> class.
-        /// </summary>
-        public MarkdownInline(MarkdownInlineType type)
-        {
-            Type = type;
-        }
+        public abstract MarkdownInlineType Type { get; }
     }
 }
