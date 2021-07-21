@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using Microsoft.Toolkit.Parsers.Core;
+using Panosen.Markdown.Blocks;
 using Panosen.Markdown.Parsers.Helpers;
 
 namespace Panosen.Markdown.Parsers.Blocks
@@ -15,23 +16,8 @@ namespace Panosen.Markdown.Parsers.Blocks
     /// <summary>
     /// Represents a list, with each list item proceeded by either a number or a bullet.
     /// </summary>
-    public class ListBlock : MarkdownBlock
+    public class ListBlockParser
     {
-        /// <summary>
-        /// List
-        /// </summary>
-        public override MarkdownBlockType Type => MarkdownBlockType.List;
-
-        /// <summary>
-        /// Gets or sets the list items.
-        /// </summary>
-        public IList<ListItemBlock> Items { get; set; }
-
-        /// <summary>
-        /// Gets or sets the style of the list, either numbered or bulleted.
-        /// </summary>
-        public ListStyle Style { get; set; }
-
         /// <summary>
         /// Parses a list block.
         /// </summary>
@@ -356,44 +342,6 @@ namespace Panosen.Markdown.Parsers.Blocks
             }
 
             return usedBlockParser;
-        }
-
-        /// <summary>
-        /// Converts the object into it's textual representation.
-        /// </summary>
-        /// <returns> The textual representation of this object. </returns>
-        public override string ToString()
-        {
-            if (Items == null)
-            {
-                return base.ToString();
-            }
-
-            var result = new StringBuilder();
-            for (int i = 0; i < Items.Count; i++)
-            {
-                if (result.Length > 0)
-                {
-                    result.AppendLine();
-                }
-
-                switch (Style)
-                {
-                    case ListStyle.Bulleted:
-                        result.Append("* ");
-                        break;
-
-                    case ListStyle.Numbered:
-                        result.Append(i + 1);
-                        result.Append(".");
-                        break;
-                }
-
-                result.Append(" ");
-                result.Append(string.Join("\r\n", Items[i].Blocks));
-            }
-
-            return result.ToString();
         }
     }
 }

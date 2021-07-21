@@ -4,7 +4,7 @@
 
 namespace Panosen.Markdown.Blocks
 {
-    internal class ListItemPreamble
+    public class ListItemPreamble
     {
         public ListStyle Style { get; set; }
 

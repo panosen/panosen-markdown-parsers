@@ -3,19 +3,15 @@
 // See the LICENSE file in the project root for more information.
 
 using Microsoft.Toolkit.Parsers.Core;
+using Panosen.Markdown.Blocks;
 
 namespace Panosen.Markdown.Parsers.Blocks
 {
     /// <summary>
     /// Represents a horizontal line.
     /// </summary>
-    public class HorizontalRuleBlock : MarkdownBlock
+    public class HorizontalRuleBlockParser
     {
-        /// <summary>
-        /// HorizontalRule
-        /// </summary>
-        public override MarkdownBlockType Type => MarkdownBlockType.HorizontalRule;
-
         /// <summary>
         /// Parses a horizontal rule.
         /// </summary>
@@ -57,15 +53,6 @@ namespace Panosen.Markdown.Parsers.Blocks
 
             // Hopefully there were at least 3 stars/dashes/underscores.
             return hrCharCount >= 3 ? new HorizontalRuleBlock() : null;
-        }
-
-        /// <summary>
-        /// Converts the object into it's textual representation.
-        /// </summary>
-        /// <returns> The textual representation of this object. </returns>
-        public override string ToString()
-        {
-            return "---";
         }
     }
 }

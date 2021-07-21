@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Panosen.Markdown.Blocks
 {
-    internal class ListItemBuilder : MarkdownBlock
+    public class ListItemBuilder : MarkdownBlock
     {
         public override MarkdownBlockType Type => MarkdownBlockType.ListItemBuilder;
 

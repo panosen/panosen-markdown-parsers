@@ -23,7 +23,7 @@ namespace Panosen.Markdown.Blocks
         /// <summary>
         /// Gets or sets the list items.
         /// </summary>
-        public IList<ListItemBlock> Items { get; set; }
+        public List<ListItemBlock> Items { get; set; }
 
         /// <summary>
         /// Gets or sets the style of the list, either numbered or bulleted.

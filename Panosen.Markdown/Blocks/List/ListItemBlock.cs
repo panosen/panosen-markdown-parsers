@@ -15,9 +15,5 @@ namespace Panosen.Markdown.Blocks
         /// Gets or sets the contents of the list item.
         /// </summary>
         public IList<MarkdownBlock> Blocks { get; set; }
-
-        internal ListItemBlock()
-        {
-        }
     }
 }

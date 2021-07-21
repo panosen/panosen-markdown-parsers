@@ -4,7 +4,7 @@
 
 namespace Panosen.Markdown.Blocks
 {
-    internal class NestedListInfo
+    public class NestedListInfo
     {
         public ListBlock List { get; set; }
 

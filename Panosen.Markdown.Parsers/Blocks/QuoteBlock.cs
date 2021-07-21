@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using Panosen.Markdown.Blocks;
 using System.Collections.Generic;
 
 namespace Panosen.Markdown.Parsers.Blocks
@@ -10,18 +11,8 @@ namespace Panosen.Markdown.Parsers.Blocks
     /// Represents a block that is displayed using a quote style.  Quotes are used to indicate
     /// that the text originated elsewhere (e.g. a previous comment).
     /// </summary>
-    public class QuoteBlock : MarkdownBlock
+    public class QuoteBlockParser
     {
-        /// <summary>
-        /// Quote
-        /// </summary>
-        public override MarkdownBlockType Type => MarkdownBlockType.Quote;
-
-        /// <summary>
-        /// Gets or sets the contents of the block.
-        /// </summary>
-        public IList<MarkdownBlock> Blocks { get; set; }
-
         /// <summary>
         /// Parses a quote block.
         /// </summary>

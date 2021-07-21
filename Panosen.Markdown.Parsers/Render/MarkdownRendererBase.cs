@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Panosen.Markdown.Blocks;
 using Panosen.Markdown.Inlines;
 using Panosen.Markdown.Parsers.Blocks;
 using Panosen.Markdown.Parsers.Helpers;

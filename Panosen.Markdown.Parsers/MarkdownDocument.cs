@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Panosen.Markdown.Blocks;
 using Panosen.Markdown.Parsers.Blocks;
 using Panosen.Markdown.Parsers.Helpers;
 
@@ -192,7 +193,7 @@ namespace Panosen.Markdown.Parsers
 
                         if (paragraphText.Length > 0)
                         {
-                            blocks.Add(ParagraphBlock.Parse(paragraphText.ToString()));
+                            blocks.Add(ParagraphBlockParser.Parse(paragraphText.ToString()));
                         }
 
                         return blocks;
@@ -210,7 +211,7 @@ namespace Panosen.Markdown.Parsers
                     // End the current paragraph.
                     if (paragraphText.Length > 0)
                     {
-                        blocks.Add(ParagraphBlock.Parse(paragraphText.ToString()));
+                        blocks.Add(ParagraphBlockParser.Parse(paragraphText.ToString()));
                         paragraphText.Clear();
                     }
                 }
@@ -224,7 +225,7 @@ namespace Panosen.Markdown.Parsers
                     if (nonSpaceChar == '-' && nonSpacePos == startOfLine)
                     {
                         // Yaml Header
-                        newBlockElement = YamlHeaderBlock.Parse(markdown, startOfLine, markdown.Length, out startOfLine);
+                        newBlockElement = YamlHeaderBlockParser.Parse(markdown, startOfLine, markdown.Length, out startOfLine);
                         if (newBlockElement != null)
                         {
                             realStartOfLine = startOfLine;
@@ -238,7 +239,7 @@ namespace Panosen.Markdown.Parsers
                     if (newBlockElement == null && nonSpaceChar == '#' && nonSpacePos == startOfLine)
                     {
                         // Hash-prefixed header.
-                        newBlockElement = HeaderBlock.ParseHashPrefixedHeader(markdown, startOfLine, endOfLine);
+                        newBlockElement = HeaderBlockParser.ParseHashPrefixedHeader(markdown, startOfLine, endOfLine);
                     }
                     else if ((nonSpaceChar == '-' || nonSpaceChar == '=') && nonSpacePos == startOfLine && paragraphText.Length > 0)
                     {
@@ -252,7 +253,7 @@ namespace Panosen.Markdown.Parsers
                         //   -|-
                         //   1|2
                         //   ===
-                        newBlockElement = HeaderBlock.ParseUnderlineStyleHeader(markdown, previousStartOfLine, previousEndOfLine, startOfLine, endOfLine);
+                        newBlockElement = HeaderBlockParser.ParseUnderlineStyleHeader(markdown, previousStartOfLine, previousEndOfLine, startOfLine, endOfLine);
 
                         if (newBlockElement != null)
                         {
@@ -266,7 +267,7 @@ namespace Panosen.Markdown.Parsers
                     // These characters overlap with the underline-style header - this check should go after that one.
                     if (newBlockElement == null && (nonSpaceChar == '*' || nonSpaceChar == '-' || nonSpaceChar == '_'))
                     {
-                        newBlockElement = HorizontalRuleBlock.Parse(markdown, startOfLine, endOfLine);
+                        newBlockElement = HorizontalRuleBlockParser.Parse(markdown, startOfLine, endOfLine);
                     }
 
                     if (newBlockElement == null && lineStartsNewParagraph)
@@ -275,17 +276,17 @@ namespace Panosen.Markdown.Parsers
                         int endOfBlock = startOfNextLine;
                         if (nonSpaceChar == '*' || nonSpaceChar == '+' || nonSpaceChar == '-' || (nonSpaceChar >= '0' && nonSpaceChar <= '9'))
                         {
-                            newBlockElement = ListBlock.Parse(markdown, realStartOfLine, end, quoteDepth, out endOfBlock);
+                            newBlockElement = ListBlockParser.Parse(markdown, realStartOfLine, end, quoteDepth, out endOfBlock);
                         }
 
                         if (newBlockElement == null && (nonSpacePos > startOfLine || nonSpaceChar == '`'))
                         {
-                            newBlockElement = CodeBlock.Parse(markdown, realStartOfLine, end, quoteDepth, out endOfBlock);
+                            newBlockElement = CodeBlockParser.Parse(markdown, realStartOfLine, end, quoteDepth, out endOfBlock);
                         }
 
                         if (newBlockElement == null)
                         {
-                            newBlockElement = TableBlock.Parse(markdown, realStartOfLine, endOfLine, end, quoteDepth, out endOfBlock);
+                            newBlockElement = TableBlockParser.Parse(markdown, realStartOfLine, endOfLine, end, quoteDepth, out endOfBlock);
                         }
 
                         if (newBlockElement != null)
@@ -297,13 +298,13 @@ namespace Panosen.Markdown.Parsers
                     // This check needs to go after the code block check.
                     if (newBlockElement == null && nonSpaceChar == '>')
                     {
-                        newBlockElement = QuoteBlock.Parse(markdown, realStartOfLine, end, quoteDepth, out startOfNextLine);
+                        newBlockElement = QuoteBlockParser.Parse(markdown, realStartOfLine, end, quoteDepth, out startOfNextLine);
                     }
 
                     // This check needs to go after the code block check.
                     if (newBlockElement == null && nonSpaceChar == '[')
                     {
-                        newBlockElement = LinkReferenceBlock.Parse(markdown, startOfLine, endOfLine);
+                        newBlockElement = LinkReferenceBlockParser.Parse(markdown, startOfLine, endOfLine);
                     }
 
                     // Block elements start new paragraphs.
@@ -333,13 +334,13 @@ namespace Panosen.Markdown.Parsers
                             if (paragraphText.Length == 0)
                             {
                                 // Optimize for single line paragraphs.
-                                blocks.Add(ParagraphBlock.Parse(markdown.Substring(startOfLine, endOfLine - startOfLine)));
+                                blocks.Add(ParagraphBlockParser.Parse(markdown.Substring(startOfLine, endOfLine - startOfLine)));
                             }
                             else
                             {
                                 // Slow path.
                                 paragraphText.Append(markdown.Substring(startOfLine, endOfLine - startOfLine));
-                                blocks.Add(ParagraphBlock.Parse(paragraphText.ToString()));
+                                blocks.Add(ParagraphBlockParser.Parse(paragraphText.ToString()));
                             }
                         }
                         else
@@ -352,7 +353,7 @@ namespace Panosen.Markdown.Parsers
                         // The line contained a block.  End the current paragraph, if any.
                         if (paragraphText.Length > 0)
                         {
-                            blocks.Add(ParagraphBlock.Parse(paragraphText.ToString()));
+                            blocks.Add(ParagraphBlockParser.Parse(paragraphText.ToString()));
                             paragraphText.Clear();
                         }
 
