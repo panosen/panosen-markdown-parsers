@@ -1,31 +1,11 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MIT license.
-// See the LICENSE file in the project root for more information.
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.Toolkit.Parsers.Core;
 using Panosen.Markdown.Parsers.Helpers;
 
 namespace Panosen.Markdown.Parsers.Inlines
 {
-    /// <summary>
-    /// Represents a span containing bold italic text.
-    /// </summary>
-    internal class BoldItalicTextInline : MarkdownInline
+    internal class BoldItalicTextInlineParser
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BoldItalicTextInline"/> class.
-        /// </summary>
-        public BoldItalicTextInline()
-            : base(MarkdownInlineType.Bold)
-        {
-        }
-
-        /// <summary>
-        /// Gets or sets the contents of the inline.
-        /// </summary>
-        public IList<MarkdownInline> Inlines { get; set; }
-
         /// <summary>
         /// Returns the chars that if found means we might have a match.
         /// </summary>
@@ -100,20 +80,6 @@ namespace Panosen.Markdown.Parsers.Inlines
                 }
             };
             return new InlineParseResult(bold, start, innerEnd + 3);
-        }
-
-        /// <summary>
-        /// Converts the object into it's textual representation.
-        /// </summary>
-        /// <returns> The textual representation of this object. </returns>
-        public override string ToString()
-        {
-            if (Inlines == null)
-            {
-                return base.ToString();
-            }
-
-            return "***" + string.Join(string.Empty, Inlines) + "***";
         }
     }
 }

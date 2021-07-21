@@ -19,7 +19,7 @@ namespace Panosen.Markdown.Parsers.Helpers
 
         static Common()
         {
-            BoldItalicTextInline.AddTripChars(_triggerList);
+            BoldItalicTextInlineParser.AddTripChars(_triggerList);
             BoldTextInline.AddTripChars(_triggerList);
             ItalicTextInline.AddTripChars(_triggerList);
             MarkdownLinkInline.AddTripChars(_triggerList);
@@ -109,7 +109,7 @@ namespace Panosen.Markdown.Parsers.Helpers
                         switch (currentTripChar.Method)
                         {
                             case InlineParseMethod.BoldItalic:
-                                parseResult = BoldItalicTextInline.Parse(markdown, pos, end);
+                                parseResult = BoldItalicTextInlineParser.Parse(markdown, pos, end);
                                 break;
 
                             case InlineParseMethod.Comment:
