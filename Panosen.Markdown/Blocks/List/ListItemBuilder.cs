@@ -4,7 +4,7 @@
 
 using System.Text;
 
-namespace Panosen.Markdown.Parsers.Blocks
+namespace Panosen.Markdown.Blocks
 {
     internal class ListItemBuilder : MarkdownBlock
     {

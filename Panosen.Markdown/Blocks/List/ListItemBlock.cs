@@ -4,7 +4,7 @@
 
 using System.Collections.Generic;
 
-namespace Panosen.Markdown.Parsers.Blocks
+namespace Panosen.Markdown.Blocks
 {
     /// <summary>
     /// This specifies the Content of the List element.

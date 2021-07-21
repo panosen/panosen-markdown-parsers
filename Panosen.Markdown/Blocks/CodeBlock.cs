@@ -4,7 +4,7 @@
 
 using System.Text;
 
-namespace Panosen.Markdown.Parsers.Blocks
+namespace Panosen.Markdown.Blocks
 {
     /// <summary>
     /// Represents a block of text that is displayed in a fixed-width font.  Inline elements and
