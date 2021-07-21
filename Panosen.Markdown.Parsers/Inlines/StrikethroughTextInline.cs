@@ -11,7 +11,7 @@ namespace Panosen.Markdown.Parsers.Inlines
     /// <summary>
     /// Represents a span containing strikethrough text.
     /// </summary>
-    public class StrikethroughTextInline : MarkdownInline, IInlineContainer
+    public class StrikethroughTextInline : MarkdownInline
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="StrikethroughTextInline"/> class.

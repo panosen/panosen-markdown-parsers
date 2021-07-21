@@ -11,7 +11,7 @@ namespace Panosen.Markdown.Parsers.Inlines
     /// <summary>
     /// Represents a span containing bold italic text.
     /// </summary>
-    internal class BoldItalicTextInline : MarkdownInline, IInlineContainer
+    internal class BoldItalicTextInline : MarkdownInline
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BoldItalicTextInline"/> class.

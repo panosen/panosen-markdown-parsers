@@ -11,7 +11,7 @@ namespace Panosen.Markdown.Parsers.Inlines
     /// <summary>
     /// Represents a span containing superscript text.
     /// </summary>
-    public class SuperscriptTextInline : MarkdownInline, IInlineContainer
+    public class SuperscriptTextInline : MarkdownInline
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SuperscriptTextInline"/> class.

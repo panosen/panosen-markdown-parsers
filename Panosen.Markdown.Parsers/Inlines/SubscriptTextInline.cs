@@ -13,7 +13,7 @@ namespace Panosen.Markdown.Parsers.Inlines
     /// <summary>
     /// Represents a span containing subscript text.
     /// </summary>
-    public class SubscriptTextInline : MarkdownInline, IInlineContainer
+    public class SubscriptTextInline : MarkdownInline
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SubscriptTextInline"/> class.

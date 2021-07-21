@@ -13,7 +13,7 @@ namespace Panosen.Markdown.Parsers.Inlines
     /// <summary>
     /// Represents a type of hyperlink where the text can be different from the target URL.
     /// </summary>
-    public class MarkdownLinkInline : MarkdownInline, IInlineContainer, ILinkElement
+    public class MarkdownLinkInline : MarkdownInline, ILinkElement
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MarkdownLinkInline"/> class.

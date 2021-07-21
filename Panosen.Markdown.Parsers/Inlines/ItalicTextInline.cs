@@ -11,7 +11,7 @@ namespace Panosen.Markdown.Parsers.Inlines
     /// <summary>
     /// Represents a span containing italic text.
     /// </summary>
-    public class ItalicTextInline : MarkdownInline, IInlineContainer
+    public class ItalicTextInline : MarkdownInline
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ItalicTextInline"/> class.

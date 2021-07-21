@@ -11,7 +11,7 @@ namespace Panosen.Markdown.Parsers.Inlines
     /// <summary>
     /// Represents a span that contains bold text.
     /// </summary>
-    public class BoldTextInline : MarkdownInline, IInlineContainer
+    public class BoldTextInline : MarkdownInline
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BoldTextInline"/> class.
