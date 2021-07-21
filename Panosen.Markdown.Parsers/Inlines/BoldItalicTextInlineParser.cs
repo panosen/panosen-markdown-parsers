@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Toolkit.Parsers.Core;
+using Panosen.Markdown.Inlines;
 using Panosen.Markdown.Parsers.Helpers;
 
 namespace Panosen.Markdown.Parsers.Inlines
