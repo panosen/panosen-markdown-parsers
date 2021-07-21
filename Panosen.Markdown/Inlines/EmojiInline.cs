@@ -12,11 +12,9 @@ namespace Panosen.Markdown.Inlines
     public partial class EmojiInline : MarkdownInline
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="EmojiInline"/> class.
+        /// Emoji
         /// </summary>
-        public EmojiInline() : base(MarkdownInlineType.Emoji)
-        {
-        }
+        public override MarkdownInlineType Type => MarkdownInlineType.Emoji;
 
         /// <inheritdoc/>
         public string Text { get; set; }

@@ -13,12 +13,9 @@ namespace Panosen.Markdown.Inlines
     public class ImageInline : MarkdownInline
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ImageInline"/> class.
+        /// Image
         /// </summary>
-        public ImageInline()
-            : base(MarkdownInlineType.Image)
-        {
-        }
+        public override MarkdownInlineType Type => MarkdownInlineType.Image;
 
         /// <summary>
         /// Gets or sets the image URL.

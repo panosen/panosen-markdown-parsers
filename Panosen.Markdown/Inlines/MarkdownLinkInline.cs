@@ -13,12 +13,9 @@ namespace Panosen.Markdown.Inlines
     public class MarkdownLinkInline : MarkdownInline
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MarkdownLinkInline"/> class.
+        /// MarkdownLink
         /// </summary>
-        public MarkdownLinkInline()
-            : base(MarkdownInlineType.MarkdownLink)
-        {
-        }
+        public override MarkdownInlineType Type => MarkdownInlineType.MarkdownLink;
 
         /// <summary>
         /// Gets or sets the contents of the inline.

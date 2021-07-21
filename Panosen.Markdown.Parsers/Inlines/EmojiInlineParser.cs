@@ -66,7 +66,7 @@ namespace Panosen.Markdown.Parsers.Inlines
 
             if (_emojiCodesDictionary.TryGetValue(emojiName, out var emojiCode))
             {
-                var result = new EmojiInline { Text = char.ConvertFromUtf32(emojiCode), Type = MarkdownInlineType.Emoji };
+                var result = new EmojiInline { Text = char.ConvertFromUtf32(emojiCode) };
                 return new InlineParseResult(result, start, innerEnd + 1);
             }
 

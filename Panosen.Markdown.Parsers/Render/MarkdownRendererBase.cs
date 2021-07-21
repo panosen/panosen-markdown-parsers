@@ -250,7 +250,6 @@ namespace Panosen.Markdown.Parsers.Render
         /// <summary>
         /// If this is a reference-style link, attempts to converts it to a regular link.
         /// </summary>
-        /// <param name="document"> The document containing the list of references. </param>
         internal void ResolveReference(MarkdownLinkInline markdownLinkInline, MarkdownDocument document)
         {
             if (document == null)
@@ -286,7 +285,6 @@ namespace Panosen.Markdown.Parsers.Render
         /// <summary>
         /// If this is a reference-style link, attempts to converts it to a regular link.
         /// </summary>
-        /// <param name="document"> The document containing the list of references. </param>
         internal void ResolveReference(ImageInline imageInline, MarkdownDocument document)
         {
             if (document == null)

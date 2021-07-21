@@ -13,12 +13,9 @@ namespace Panosen.Markdown.Inlines
     public class LinkAnchorInline : MarkdownInline
     {
         /// <summary>
-        /// LinkAnchorInline
+        /// LinkReference
         /// </summary>
-        public LinkAnchorInline()
-            : base(MarkdownInlineType.LinkReference)
-        {
-        }
+        public override MarkdownInlineType Type => MarkdownInlineType.LinkReference;
 
         /// <summary>
         /// Gets or sets the Name of this Link Reference.

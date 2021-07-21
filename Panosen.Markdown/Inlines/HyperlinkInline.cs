@@ -15,12 +15,9 @@ namespace Panosen.Markdown.Inlines
     public class HyperlinkInline : MarkdownInline
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="HyperlinkInline"/> class.
+        /// RawHyperlink
         /// </summary>
-        public HyperlinkInline()
-            : base(MarkdownInlineType.RawHyperlink)
-        {
-        }
+        public override MarkdownInlineType Type => MarkdownInlineType.RawHyperlink;
 
         /// <summary>
         /// Gets or sets the text to display.

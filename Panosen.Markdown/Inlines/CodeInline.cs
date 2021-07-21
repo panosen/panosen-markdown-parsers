@@ -14,12 +14,9 @@ namespace Panosen.Markdown.Inlines
     public class CodeInline : MarkdownInline
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CodeInline"/> class.
+        /// Code
         /// </summary>
-        public CodeInline()
-            : base(MarkdownInlineType.Code)
-        {
-        }
+        public override MarkdownInlineType Type => MarkdownInlineType.Code;
 
         /// <summary>
         /// Gets or sets the text to display as code.

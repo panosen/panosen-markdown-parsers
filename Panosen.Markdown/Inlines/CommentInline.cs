@@ -13,11 +13,9 @@ namespace Panosen.Markdown.Inlines
     public class CommentInline : MarkdownInline
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CommentInline"/> class.
+        /// Comment
         /// </summary>
-        public CommentInline() : base(MarkdownInlineType.Comment)
-        {
-        }
+        public override MarkdownInlineType Type => MarkdownInlineType.Comment;
 
         /// <summary>
         /// Gets or sets the Content of the Comment.

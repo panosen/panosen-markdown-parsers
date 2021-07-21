@@ -13,12 +13,9 @@ namespace Panosen.Markdown.Inlines
     public class StrikethroughTextInline : MarkdownInline
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="StrikethroughTextInline"/> class.
+        /// Strikethrough
         /// </summary>
-        public StrikethroughTextInline()
-            : base(MarkdownInlineType.Strikethrough)
-        {
-        }
+        public override MarkdownInlineType Type => MarkdownInlineType.Strikethrough;
 
         /// <summary>
         /// Gets or sets The contents of the inline.

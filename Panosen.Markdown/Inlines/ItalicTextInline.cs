@@ -13,12 +13,9 @@ namespace Panosen.Markdown.Inlines
     public class ItalicTextInline : MarkdownInline
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ItalicTextInline"/> class.
+        /// Italic
         /// </summary>
-        public ItalicTextInline()
-            : base(MarkdownInlineType.Italic)
-        {
-        }
+        public override MarkdownInlineType Type => MarkdownInlineType.Italic;
 
         /// <summary>
         /// Gets or sets the contents of the inline.
