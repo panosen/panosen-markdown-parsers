@@ -29,14 +29,5 @@ namespace Panosen.Markdown.Inlines
         /// Gets or sets the raw Link Reference.
         /// </summary>
         public string Raw { get; set; }
-
-        /// <summary>
-        /// Converts the object into it's textual representation.
-        /// </summary>
-        /// <returns> The textual representation of this object. </returns>
-        public override string ToString()
-        {
-            return Raw;
-        }
     }
 }

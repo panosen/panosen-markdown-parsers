@@ -25,20 +25,5 @@ namespace Panosen.Markdown.Inlines
         /// Gets or sets the text for this run.
         /// </summary>
         public string Text { get; set; }
-
-
-        /// <summary>
-        /// Converts the object into it's textual representation.
-        /// </summary>
-        /// <returns> The textual representation of this object. </returns>
-        public override string ToString()
-        {
-            if (Text == null)
-            {
-                return base.ToString();
-            }
-
-            return Text;
-        }
     }
 }

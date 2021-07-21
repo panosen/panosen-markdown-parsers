@@ -14,8 +14,7 @@ namespace Panosen.Markdown.Inlines
         /// <summary>
         /// Initializes a new instance of the <see cref="EmojiInline"/> class.
         /// </summary>
-        public EmojiInline()
-            : base(MarkdownInlineType.Emoji)
+        public EmojiInline() : base(MarkdownInlineType.Emoji)
         {
         }
 

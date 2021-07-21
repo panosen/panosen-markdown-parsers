@@ -8,14 +8,14 @@ namespace Panosen.Markdown.Inlines
 {
     /// <summary>
     /// Represents a span that contains comment.
+    /// &lt;!--sample--&gt;
     /// </summary>
     public class CommentInline : MarkdownInline
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CommentInline"/> class.
         /// </summary>
-        public CommentInline()
-            : base(MarkdownInlineType.Comment)
+        public CommentInline() : base(MarkdownInlineType.Comment)
         {
         }
 
@@ -23,14 +23,5 @@ namespace Panosen.Markdown.Inlines
         /// Gets or sets the Content of the Comment.
         /// </summary>
         public string Text { get; set; }
-
-        /// <summary>
-        /// Converts the object into it's textual representation.
-        /// </summary>
-        /// <returns> The textual representation of this object. </returns>
-        public override string ToString()
-        {
-            return "<!--" + Text + "-->";
-        }
     }
 }

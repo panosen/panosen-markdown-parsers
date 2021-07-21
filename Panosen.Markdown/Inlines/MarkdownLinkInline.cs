@@ -39,24 +39,5 @@ namespace Panosen.Markdown.Inlines
         /// Gets or sets the ID of a reference, if this is a reference-style link.
         /// </summary>
         public string ReferenceId { get; set; }
-
-        /// <summary>
-        /// Converts the object into it's textual representation.
-        /// </summary>
-        /// <returns> The textual representation of this object. </returns>
-        public override string ToString()
-        {
-            if (Inlines == null || Url == null)
-            {
-                return base.ToString();
-            }
-
-            if (ReferenceId != null)
-            {
-                return string.Format("[{0}][{1}]", string.Join(string.Empty, Inlines), ReferenceId);
-            }
-
-            return string.Format("[{0}]({1})", string.Join(string.Empty, Inlines), Url);
-        }
     }
 }

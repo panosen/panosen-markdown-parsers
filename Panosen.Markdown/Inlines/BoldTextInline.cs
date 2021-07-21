@@ -8,6 +8,7 @@ namespace Panosen.Markdown.Inlines
 {
     /// <summary>
     /// Represents a span that contains bold text.
+    /// **sample**
     /// </summary>
     public class BoldTextInline : MarkdownInline
     {
@@ -23,19 +24,5 @@ namespace Panosen.Markdown.Inlines
         /// Gets or sets the contents of the inline.
         /// </summary>
         public IList<MarkdownInline> Inlines { get; set; }
-
-        /// <summary>
-        /// Converts the object into it's textual representation.
-        /// </summary>
-        /// <returns> The textual representation of this object. </returns>
-        public override string ToString()
-        {
-            if (Inlines == null)
-            {
-                return base.ToString();
-            }
-
-            return "**" + string.Join(string.Empty, Inlines) + "**";
-        }
     }
 }

@@ -14,6 +14,7 @@ namespace Panosen.Markdown.Inlines
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SubscriptTextInline"/> class.
+        /// &lt;sub&gt;sample&lt;/sub&gt;
         /// </summary>
         public SubscriptTextInline()
             : base(MarkdownInlineType.Subscript)
@@ -24,19 +25,5 @@ namespace Panosen.Markdown.Inlines
         /// Gets or sets the contents of the inline.
         /// </summary>
         public IList<MarkdownInline> Inlines { get; set; }
-
-        /// <summary>
-        /// Converts the object into it's textual representation.
-        /// </summary>
-        /// <returns> The textual representation of this object. </returns>
-        public override string ToString()
-        {
-            if (Inlines == null)
-            {
-                return base.ToString();
-            }
-
-            return "<sub>" + string.Join(string.Empty, Inlines) + "</sub>";
-        }
     }
 }
