@@ -9,18 +9,6 @@ namespace Panosen.Markdown
     /// <summary>
     /// MarkdownBlock with Inlines
     /// </summary>
-    public abstract class MarkdownGenericBlock<TT> : MarkdownBlock
-    {
-
-        /// <summary>
-        /// Gets or sets the contents of the block.
-        /// </summary>
-        public List<TT> Inlines { get; set; }
-    }
-
-    /// <summary>
-    /// MarkdownBlock with Inlines
-    /// </summary>
     public abstract class MarkdownInlineBlock : MarkdownBlock
     {
 

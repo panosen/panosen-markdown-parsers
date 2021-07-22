@@ -30,7 +30,10 @@ namespace Panosen.Markdown.Parser2
                         break;
                     case '>':
                         {
-                            ProcessQuote(markdownDocument, line);
+                            markdownDocument
+                                .AddBlock<QuoteBlock>()
+                                .AddBlock<ParagraphBlock>()
+                                .AddInlines(ProcessLine(line.Substring(1)));
                         }
                         break;
                     case '*':
@@ -110,16 +113,6 @@ namespace Panosen.Markdown.Parser2
                 paragraphBlock.Inlines = ProcessLine(line);
                 markdownDocument.AddBlock(paragraphBlock);
             }
-        }
-
-        private static void ProcessQuote(MarkdownDocument markdownDocument, string line)
-        {
-            QuoteBlock quoteBlock = markdownDocument.AddBlock<QuoteBlock>();
-            quoteBlock.Blocks = new List<MarkdownBlock>();
-
-            ParagraphBlock paragraphBlock = new ParagraphBlock();
-            paragraphBlock.Inlines = ProcessLine(line.Substring(1));
-            quoteBlock.Blocks.Add(paragraphBlock);
         }
 
         private static void ProcessHeader(MarkdownDocument markdownDocument, string line)
