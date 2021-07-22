@@ -124,17 +124,16 @@ namespace Panosen.Markdown.Parser2
             }
             if (level < line.Length && line[level] == ' ')
             {
-                HeaderBlock headerBlock = new HeaderBlock();
-                headerBlock.HeaderLevel = level;
-                headerBlock.Inlines = new List<MarkdownInline>();
-                headerBlock.Inlines.Add(new TextRunInline { Text = line.Substring(level) });
-                markdownDocument.AddBlock(headerBlock);
+                markdownDocument.AddBlock<HeaderBlock>()
+                    .SetHeaderLevel(level)
+                    .AddInline<TextRunInline>()
+                    .SetText(line.Substring(level));
             }
             else
             {
-                ParagraphBlock paragraphBlock = new ParagraphBlock();
-                paragraphBlock.Inlines = ProcessLine(line);
-                markdownDocument.AddBlock(paragraphBlock);
+                markdownDocument
+                    .AddBlock<ParagraphBlock>()
+                    .AddInlines(ProcessLine(line));
             }
         }
 

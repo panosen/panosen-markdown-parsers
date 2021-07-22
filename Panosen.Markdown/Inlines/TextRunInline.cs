@@ -23,4 +23,20 @@ namespace Panosen.Markdown.Inlines
         /// </summary>
         public string Text { get; set; }
     }
+
+    /// <summary>
+    /// TextRunInlineExtension
+    /// </summary>
+    public static class TextRunInlineExtension
+    {
+        /// <summary>
+        /// SetText
+        /// </summary>
+        public static TextRunInline SetText(this TextRunInline textRunInline, string text)
+        {
+            textRunInline.Text = text;
+
+            return textRunInline;
+        }
+    }
 }
