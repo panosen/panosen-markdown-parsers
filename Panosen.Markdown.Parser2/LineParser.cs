@@ -16,7 +16,7 @@ namespace Panosen.Markdown.Parser2
                 return null;
             }
 
-            var tokenList = TokenAnalyzer.GetTokenList(line);
+            var tokenList = Tokenizer.GetTokenList(line);
             if (tokenList == null || tokenList.Count <= 0)
             {
                 return null;

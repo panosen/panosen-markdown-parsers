@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Panosen.Markdown.Parser2
 {
-    public class TokenAnalyzer
+    public class Tokenizer
     {
         public static List<Token> GetTokenList(string text)
         {
