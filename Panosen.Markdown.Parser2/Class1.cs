@@ -78,9 +78,7 @@ namespace Panosen.Markdown.Parser2
             }
             else
             {
-                ParagraphBlock paragraphBlock = new ParagraphBlock();
-                paragraphBlock.Inlines = ProcessLine(line);
-                markdownDocument.AddBlock(paragraphBlock);
+                markdownDocument.AddBlock<ParagraphBlock>().AddInlines(ProcessLine(line));
             }
         }
 
@@ -109,9 +107,7 @@ namespace Panosen.Markdown.Parser2
             }
             else
             {
-                ParagraphBlock paragraphBlock = new ParagraphBlock();
-                paragraphBlock.Inlines = ProcessLine(line);
-                markdownDocument.AddBlock(paragraphBlock);
+                markdownDocument.AddBlock<ParagraphBlock>().AddInlines(ProcessLine(line));
             }
         }
 
@@ -138,19 +134,20 @@ namespace Panosen.Markdown.Parser2
         }
 
         #region 分析一个句子
-        private static List<MarkdownInline> ProcessLine(string line)
+        private static MarkdownInlineCollection ProcessLine(string line)
         {
-            List<MarkdownInline> markdownInlineList = new List<MarkdownInline>();
             if (string.IsNullOrEmpty(line))
             {
-                return markdownInlineList;
+                return null;
             }
 
             var tokenList = GetTokenList(line);
             if (tokenList == null || tokenList.Count <= 0)
             {
-                return markdownInlineList;
+                return null;
             }
+
+            MarkdownInlineCollection markdownInlineCollection = new MarkdownInlineCollection();
 
             Stack<Status> statusStack = new Stack<Status>();
             List<Token> tempTokenList = new List<Token>();
@@ -191,7 +188,7 @@ namespace Panosen.Markdown.Parser2
                                 case TokenType.LeftSmallBracktet:
                                 case TokenType.RightSmallBracket:
                                 default:
-                                    markdownInlineList.Add(new TextRunInline { Text = tokenList[index].Text });
+                                    markdownInlineCollection.AddInline<TextRunInline>().SetText(tokenList[index].Text);
                                     break;
                             }
                         }
@@ -208,7 +205,7 @@ namespace Panosen.Markdown.Parser2
                             {
                                 statusStack.Pop();
                                 tempTokenList.RemoveAt(0);
-                                markdownInlineList.Add(new TextRunInline { Text = "!" });
+                                markdownInlineCollection.AddInline<TextRunInline>().SetText("!");
                             }
                         }
                         break;
@@ -257,7 +254,7 @@ namespace Panosen.Markdown.Parser2
                                 statusStack.Pop();
                                 for (int i = 0; i < tempTokenList.Count; i++)
                                 {
-                                    markdownInlineList.Add(new TextRunInline { Text = tempTokenList[i].Text });
+                                    markdownInlineCollection.AddInline<TextRunInline>().SetText(tempTokenList[i].Text);
                                 }
                                 tempTokenList.Clear();
                                 imageTextBuilder.Clear();
@@ -272,11 +269,11 @@ namespace Panosen.Markdown.Parser2
                                 statusStack.Pop();
                                 for (int i = 0; i < tempTokenList.Count; i++)
                                 {
-                                    markdownInlineList.Add(new TextRunInline { Text = tempTokenList[i].Text });
+                                    markdownInlineCollection.AddInline<TextRunInline>().SetText(tempTokenList[i].Text);
                                 }
                                 tempTokenList.Clear();
                                 imageTextBuilder.Clear();
-                                markdownInlineList.Add(new TextRunInline { Text = ")" });
+                                markdownInlineCollection.AddInline<TextRunInline>().SetText(")");
                             }
                             else
                             {
@@ -292,7 +289,9 @@ namespace Panosen.Markdown.Parser2
                             if (tokenList[index].TokenType == TokenType.RightSmallBracket)
                             {
                                 statusStack.Pop();
-                                markdownInlineList.Add(new ImageInline { Text = imageTextBuilder.ToString(), Url = imageUrlBuilder.ToString() });
+                                var imageInline = markdownInlineCollection.AddInline<ImageInline>();
+                                imageInline.Text = imageTextBuilder.ToString();
+                                imageInline.Url = imageUrlBuilder.ToString();
                                 imageTextBuilder.Clear();
                                 imageUrlBuilder.Clear();
                             }
@@ -308,8 +307,8 @@ namespace Panosen.Markdown.Parser2
                             if (tokenList[index].TokenType == TokenType.RightMiddleBracket)
                             {
                                 statusStack.Pop();
-                                markdownInlineList.Add(new TextRunInline { Text = "[" });
-                                markdownInlineList.Add(new TextRunInline { Text = "]" });
+                                markdownInlineCollection.AddInline<TextRunInline>().SetText("[");
+                                markdownInlineCollection.AddInline<TextRunInline>().SetText("]");
                             }
                             else
                             {
@@ -345,7 +344,7 @@ namespace Panosen.Markdown.Parser2
                             {
                                 for (int i = 0; i < tempTokenList.Count; i++)
                                 {
-                                    markdownInlineList.Add(new TextRunInline { Text = tempTokenList[index].Text });
+                                    markdownInlineCollection.AddInline<TextRunInline>().SetText(tempTokenList[index].Text);
                                 }
                                 linkTextBuilder.Clear();
                                 tempTokenList.Clear();
@@ -357,7 +356,7 @@ namespace Panosen.Markdown.Parser2
                         {
                             if (tokenList[index].TokenType == TokenType.RightSmallBracket)
                             {
-                                markdownInlineList.Add(new TextRunInline { Text = linkTextBuilder.ToString() });
+                                markdownInlineCollection.AddInline<TextRunInline>().SetText(linkTextBuilder.ToString());
                                 tempTokenList.Clear();
                                 linkTextBuilder.Clear();
                             }
@@ -374,7 +373,9 @@ namespace Panosen.Markdown.Parser2
                         {
                             if (tokenList[index].TokenType == TokenType.RightSmallBracket)
                             {
-                                markdownInlineList.Add(new HyperlinkInline { Text = linkTextBuilder.ToString(), Url = linkUrlBuilder.ToString() });
+                                var hyperlinkInline = markdownInlineCollection.AddInline<HyperlinkInline>();
+                                hyperlinkInline.Text = linkTextBuilder.ToString();
+                                hyperlinkInline.Url = linkUrlBuilder.ToString();
                             }
                             else
                             {
@@ -439,7 +440,7 @@ namespace Panosen.Markdown.Parser2
                 index++;
             }
 
-            return markdownInlineList;
+            return markdownInlineCollection;
         }
 
         internal enum Status

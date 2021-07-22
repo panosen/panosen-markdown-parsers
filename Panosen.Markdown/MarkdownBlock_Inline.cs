@@ -55,6 +55,7 @@ namespace Panosen.Markdown
 
             return markdownInline;
         }
+
         /// <summary>
         /// AddInline
         /// </summary>
@@ -71,6 +72,30 @@ namespace Panosen.Markdown
             }
 
             markdownInlineBlock.Inlines.AddRange(markdownInlines);
+
+            return markdownInlineBlock;
+        }
+
+        /// <summary>
+        /// AddInline
+        /// </summary>
+        public static MarkdownInlineBlock AddInlines(this MarkdownInlineBlock markdownInlineBlock, MarkdownInlineCollection markdownInlineCollecton)
+        {
+            if (markdownInlineCollecton == null)
+            {
+                return markdownInlineBlock;
+            }
+            if (markdownInlineCollecton.Inlines == null || markdownInlineCollecton.Inlines.Count == 0)
+            {
+                return markdownInlineBlock;
+            }
+
+            if (markdownInlineBlock.Inlines == null)
+            {
+                markdownInlineBlock.Inlines = new List<MarkdownInline>();
+            }
+
+            markdownInlineBlock.Inlines.AddRange(markdownInlineCollecton.Inlines);
 
             return markdownInlineBlock;
         }
