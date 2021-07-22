@@ -16,8 +16,8 @@ namespace Panosen.Markdown.Parser.MSTest
             var expected = new MarkdownDocumentParser().Parse(markdown);
             var actual = Class1.Process(markdown);
 
-            File.WriteAllText("f:\\actual.txt", JsonConvert.SerializeObject(actual, Formatting.Indented));
-            File.WriteAllText("f:\\expected.txt", JsonConvert.SerializeObject(expected, Formatting.Indented));
+            File.WriteAllText(@"D:\GiteeWorkspace\output\actual.txt", JsonConvert.SerializeObject(actual, Formatting.Indented));
+            File.WriteAllText(@"D:\GiteeWorkspace\output\expected.txt", JsonConvert.SerializeObject(expected, Formatting.Indented));
         }
 
         private static string PrepareMarkdown()
