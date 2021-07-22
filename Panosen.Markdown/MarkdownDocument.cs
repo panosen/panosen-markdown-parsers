@@ -30,4 +30,44 @@ namespace Panosen.Markdown
         /// </summary>
         public List<MarkdownBlock> Blocks { get; set; }
     }
+
+    /// <summary>
+    /// MarkdownDocumentExtension
+    /// </summary>
+    public static class MarkdownDocumentExtension
+    {
+        /// <summary>
+        /// AddBlock
+        /// </summary>
+        public static MarkdownDocument AddBlock(this MarkdownDocument markdownDocument, MarkdownBlock markdownBlock)
+        {
+            if (markdownDocument.Blocks == null)
+            {
+                markdownDocument.Blocks = new List<MarkdownBlock>();
+            }
+
+            markdownDocument.Blocks.Add(markdownBlock);
+
+            return markdownDocument;
+        }
+
+        /// <summary>
+        /// AddBlock
+        /// </summary>
+        public static TMarkdownBlock AddBlock<TMarkdownBlock>(this MarkdownDocument markdownDocument)
+            where TMarkdownBlock : MarkdownBlock, new()
+        {
+            if (markdownDocument.Blocks == null)
+            {
+                markdownDocument.Blocks = new List<MarkdownBlock>();
+            }
+
+            TMarkdownBlock markdownBlock = new TMarkdownBlock();
+
+            markdownDocument.Blocks.Add(markdownBlock);
+
+            return markdownBlock;
+        }
+    }
+
 }

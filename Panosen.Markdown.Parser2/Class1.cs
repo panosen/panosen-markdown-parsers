@@ -11,130 +11,36 @@ namespace Panosen.Markdown.Parser2
         public static MarkdownDocument Process(string content)
         {
             MarkdownDocument markdownDocument = new MarkdownDocument();
-            markdownDocument.Blocks = new List<MarkdownBlock>();
 
             var lines = content.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
 
             foreach (var line in lines)
             {
+                if (line[0] >= '0' && line[0] <= '9')
+                {
+                    ProcessNumber(markdownDocument, line);
+                    continue;
+                }
                 switch (line[0])
                 {
                     case '#':
                         {
-                            int level = 1;
-                            while (level < Math.Min(line.Length, 6) && line[level] == '#')
-                            {
-                                level++;
-                            }
-                            if (level < line.Length && line[level] == ' ')
-                            {
-                                HeaderBlock headerBlock = new HeaderBlock();
-                                headerBlock.HeaderLevel = level;
-                                headerBlock.Inlines = new List<MarkdownInline>();
-                                headerBlock.Inlines.Add(new TextRunInline { Text = line.Substring(level) });
-                                markdownDocument.Blocks.Add(headerBlock);
-                                continue;
-                            }
-                            else
-                            {
-                                ParagraphBlock paragraphBlock = new ParagraphBlock();
-                                paragraphBlock.Inlines = ProcessLine(line);
-                                markdownDocument.Blocks.Add(paragraphBlock);
-                                continue;
-                            }
+                            ProcessHeader(markdownDocument, line);
                         }
-
+                        break;
                     case '>':
                         {
-                            QuoteBlock quoteBlock = new QuoteBlock();
-                            quoteBlock.Blocks = new List<MarkdownBlock>();
-                            markdownDocument.Blocks.Add(quoteBlock);
-
-                            ParagraphBlock paragraphBlock = new ParagraphBlock();
-                            paragraphBlock.Inlines = ProcessLine(line.Substring(1));
-                            quoteBlock.Blocks.Add(paragraphBlock);
-
-                            continue;
+                            ProcessQuote(markdownDocument, line);
                         }
-
+                        break;
                     case '*':
                         {
-                            StringBuilder builder = new StringBuilder();
-                            int index = 0;
-                            while (index < line.Length && char.IsNumber(line[index]))
-                            {
-                                builder.Append(line[index]);
-
-                                index++;
-                            }
-                            if (index < line.Length && line[index] == '.' && index + 1 < line.Length && line[index + 1] == ' ')
-                            {
-                                var ul = new ListBlock();
-                                ul.Style = ListStyle.Numbered;
-                                ul.Items = new List<ListItemBlock>();
-                                markdownDocument.Blocks.Add(ul);
-
-                                var inlines = ProcessLine(line.Substring(index + 2));
-
-                                //ParagraphBlock paragraphBlock = new ParagraphBlock();
-                                //paragraphBlock.Inlines = inlines;
-                                //ol.Items.Add(paragraphBlock);
-                            }
-                            else
-                            {
-                                ParagraphBlock paragraphBlock = new ParagraphBlock();
-                                paragraphBlock.Inlines = ProcessLine(line);
-                                markdownDocument.Blocks.Add(paragraphBlock);
-                            }
+                            ProcessStar(markdownDocument, line);
                         }
-
-                        break;
-                    case '1':
-                    case '2':
-                    case '3':
-                    case '4':
-                    case '5':
-                    case '6':
-                    case '7':
-                    case '8':
-                    case '9':
-                    case '0':
-                        {
-                            StringBuilder builder = new StringBuilder();
-                            int index = 0;
-                            while (index < line.Length && char.IsNumber(line[index]))
-                            {
-                                builder.Append(line[index]);
-
-                                index++;
-                            }
-                            if (index < line.Length && line[index] == '.' && index + 1 < line.Length && line[index + 1] == ' ')
-                            {
-                                var ol = new ListBlock();
-                                ol.Style = ListStyle.Numbered;
-                                ol.Items = new List<ListItemBlock>();
-                                markdownDocument.Blocks.Add(ol);
-
-                                var inlines = ProcessLine(line.Substring(index + 2));
-
-                                //ParagraphBlock paragraphBlock = new ParagraphBlock();
-                                //paragraphBlock.Inlines = inlines;
-                                //ol.Items.Add(paragraphBlock);
-                            }
-                            else
-                            {
-                                ParagraphBlock paragraphBlock = new ParagraphBlock();
-                                paragraphBlock.Inlines = ProcessLine(line);
-                                markdownDocument.Blocks.Add(paragraphBlock);
-                            }
-                        }
-
                         break;
                     default:
                         {
-                            ParagraphBlock paragraphBlock = new ParagraphBlock();
-                            paragraphBlock.Inlines = ProcessLine(line);
-                            markdownDocument.Blocks.Add(paragraphBlock);
+                            markdownDocument.AddBlock<ParagraphBlock>().AddInlines(ProcessLine(line));
                         }
 
                         break;
@@ -142,6 +48,101 @@ namespace Panosen.Markdown.Parser2
             }
 
             return markdownDocument;
+        }
+
+        private static void ProcessNumber(MarkdownDocument markdownDocument, string line)
+        {
+            StringBuilder builder = new StringBuilder();
+            int index = 0;
+            while (index < line.Length && char.IsNumber(line[index]))
+            {
+                builder.Append(line[index]);
+
+                index++;
+            }
+            if (index < line.Length && line[index] == '.' && index + 1 < line.Length && line[index + 1] == ' ')
+            {
+                var ol = new ListBlock();
+                ol.Style = ListStyle.Numbered;
+                ol.Items = new List<ListItemBlock>();
+                markdownDocument.AddBlock(ol);
+
+                var inlines = ProcessLine(line.Substring(index + 2));
+
+                //ParagraphBlock paragraphBlock = new ParagraphBlock();
+                //paragraphBlock.Inlines = inlines;
+                //ol.Items.Add(paragraphBlock);
+            }
+            else
+            {
+                ParagraphBlock paragraphBlock = new ParagraphBlock();
+                paragraphBlock.Inlines = ProcessLine(line);
+                markdownDocument.AddBlock(paragraphBlock);
+            }
+        }
+
+        private static void ProcessStar(MarkdownDocument markdownDocument, string line)
+        {
+            StringBuilder builder = new StringBuilder();
+            int index = 0;
+            while (index < line.Length && char.IsNumber(line[index]))
+            {
+                builder.Append(line[index]);
+
+                index++;
+            }
+            if (index < line.Length && line[index] == '.' && index + 1 < line.Length && line[index + 1] == ' ')
+            {
+                var ul = new ListBlock();
+                ul.Style = ListStyle.Numbered;
+                ul.Items = new List<ListItemBlock>();
+                markdownDocument.AddBlock(ul);
+
+                var inlines = ProcessLine(line.Substring(index + 2));
+
+                //ParagraphBlock paragraphBlock = new ParagraphBlock();
+                //paragraphBlock.Inlines = inlines;
+                //ol.Items.Add(paragraphBlock);
+            }
+            else
+            {
+                ParagraphBlock paragraphBlock = new ParagraphBlock();
+                paragraphBlock.Inlines = ProcessLine(line);
+                markdownDocument.AddBlock(paragraphBlock);
+            }
+        }
+
+        private static void ProcessQuote(MarkdownDocument markdownDocument, string line)
+        {
+            QuoteBlock quoteBlock = markdownDocument.AddBlock<QuoteBlock>();
+            quoteBlock.Blocks = new List<MarkdownBlock>();
+
+            ParagraphBlock paragraphBlock = new ParagraphBlock();
+            paragraphBlock.Inlines = ProcessLine(line.Substring(1));
+            quoteBlock.Blocks.Add(paragraphBlock);
+        }
+
+        private static void ProcessHeader(MarkdownDocument markdownDocument, string line)
+        {
+            int level = 1;
+            while (level < Math.Min(line.Length, 6) && line[level] == '#')
+            {
+                level++;
+            }
+            if (level < line.Length && line[level] == ' ')
+            {
+                HeaderBlock headerBlock = new HeaderBlock();
+                headerBlock.HeaderLevel = level;
+                headerBlock.Inlines = new List<MarkdownInline>();
+                headerBlock.Inlines.Add(new TextRunInline { Text = line.Substring(level) });
+                markdownDocument.AddBlock(headerBlock);
+            }
+            else
+            {
+                ParagraphBlock paragraphBlock = new ParagraphBlock();
+                paragraphBlock.Inlines = ProcessLine(line);
+                markdownDocument.AddBlock(paragraphBlock);
+            }
         }
 
         #region 分析一个句子
