@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Panosen.Collections" Version="0.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Panosen.Markdown\Panosen.Markdown.csproj" />
   </ItemGroup>
 
