@@ -167,13 +167,14 @@ namespace Panosen.Markdown.Parser2
             StringBuilder linkTextBuilder = new StringBuilder();
             StringBuilder linkUrlBuilder = new StringBuilder();
 
+            StringBuilder boldBuilder = new StringBuilder();
+            StringBuilder italicBuilder = new StringBuilder();
+
             statusStack.Push(Status.Empty);
 
             var index = 0;
             while (index < tokenList.Count)
             {
-                var currentStatus = statusStack.Peek();
-
                 switch (statusStack.Peek())
                 {
                     case Status.Empty:
@@ -389,6 +390,55 @@ namespace Panosen.Markdown.Parser2
                             }
                         }
                         break;
+                    case Status.Star1:
+                        {
+                            if (tokenList[index].TokenType == TokenType.Star)
+                            {
+                                statusStack.Push(Status.Star2);
+                            }
+                            else
+                            {
+                                tempTokenList.Add(tokenList[index]);
+                                italicBuilder.Append(tokenList[index].Text);
+                            }
+                        }
+                        break;
+                    case Status.Star2:
+                        {
+                            if (tokenList[index].TokenType == TokenType.Star)
+                            {
+                                statusStack.Push(Status.Star3);
+                            }
+                            else
+                            {
+
+                            }
+                        }
+                        break;
+                    case Status.Star3:
+                        {
+                            if (tokenList[index].TokenType == TokenType.Star)
+                            {
+                                statusStack.Push(Status.Star3);
+                            }
+                            else
+                            {
+
+                            }
+                        }
+                        break;
+                    case Status.Star4:
+                        {
+                            if (tokenList[index].TokenType == TokenType.Star)
+                            {
+                                statusStack.Push(Status.Star3);
+                            }
+                            else
+                            {
+
+                            }
+                        }
+                        break;
                     default:
                         break;
                 }
@@ -447,7 +497,24 @@ namespace Panosen.Markdown.Parser2
             /// <summary>
             /// 小括号内文字
             /// </summary>
-            Link5
+            Link5,
+
+            /// <summary>
+            /// 粗体第一个*
+            /// </summary>
+            Star1,
+            /// <summary>
+            /// 粗体第二个*
+            /// </summary>
+            Star2,
+            /// <summary>
+            /// 粗体第三个*
+            /// </summary>
+            Star3,
+            /// <summary>
+            /// 粗体第四个*
+            /// </summary>
+            Star4
         }
 
         internal enum TokenType
@@ -498,54 +565,55 @@ namespace Panosen.Markdown.Parser2
         private static List<Token> GetTokenList(string text)
         {
             List<Token> tokens = new List<Token>();
-
-            if (!string.IsNullOrEmpty(text))
+            if (string.IsNullOrEmpty(text))
             {
-                StringBuilder current = new StringBuilder();
-                for (int i = 0; i < text.Length; i++)
+                return tokens;
+            }
+
+            StringBuilder current = new StringBuilder();
+            for (int i = 0; i < text.Length; i++)
+            {
+                switch (text[i])
                 {
-                    switch (text[i])
-                    {
-                        case '!':
-                            ProcessToken(tokens, current);
-                            tokens.Add(new Token { Text = text[i].ToString(), TokenType = TokenType.Excalmatory });
+                    case '!':
+                        ProcessToken(tokens, current);
+                        tokens.Add(new Token { Text = text[i].ToString(), TokenType = TokenType.Excalmatory });
 
-                            break;
-                        case '[':
-                            ProcessToken(tokens, current);
-                            tokens.Add(new Token { Text = text[i].ToString(), TokenType = TokenType.LeftMiddleBracket });
+                        break;
+                    case '[':
+                        ProcessToken(tokens, current);
+                        tokens.Add(new Token { Text = text[i].ToString(), TokenType = TokenType.LeftMiddleBracket });
 
-                            break;
-                        case ']':
-                            ProcessToken(tokens, current);
-                            tokens.Add(new Token { Text = text[i].ToString(), TokenType = TokenType.RightMiddleBracket });
+                        break;
+                    case ']':
+                        ProcessToken(tokens, current);
+                        tokens.Add(new Token { Text = text[i].ToString(), TokenType = TokenType.RightMiddleBracket });
 
-                            break;
-                        case '(':
-                            ProcessToken(tokens, current);
-                            tokens.Add(new Token { Text = text[i].ToString(), TokenType = TokenType.LeftSmallBracktet });
+                        break;
+                    case '(':
+                        ProcessToken(tokens, current);
+                        tokens.Add(new Token { Text = text[i].ToString(), TokenType = TokenType.LeftSmallBracktet });
 
-                            break;
-                        case ')':
-                            ProcessToken(tokens, current);
-                            tokens.Add(new Token { Text = text[i].ToString(), TokenType = TokenType.RightSmallBracket });
+                        break;
+                    case ')':
+                        ProcessToken(tokens, current);
+                        tokens.Add(new Token { Text = text[i].ToString(), TokenType = TokenType.RightSmallBracket });
 
-                            break;
-                        case '*':
-                            ProcessToken(tokens, current);
-                            tokens.Add(new Token { Text = text[i].ToString(), TokenType = TokenType.Star });
+                        break;
+                    case '*':
+                        ProcessToken(tokens, current);
+                        tokens.Add(new Token { Text = text[i].ToString(), TokenType = TokenType.Star });
 
-                            break;
-                        default:
-                            current.Append(text[i]);
+                        break;
+                    default:
+                        current.Append(text[i]);
 
-                            break;
-                    }
+                        break;
                 }
-                if (current.Length > 0)
-                {
-                    tokens.Add(new Token { Text = current.ToString(), TokenType = TokenType.Plain });
-                }
+            }
+            if (current.Length > 0)
+            {
+                tokens.Add(new Token { Text = current.ToString(), TokenType = TokenType.Plain });
             }
 
             return tokens;
