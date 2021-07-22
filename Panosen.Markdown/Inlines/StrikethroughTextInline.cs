@@ -20,6 +20,6 @@ namespace Panosen.Markdown.Inlines
         /// <summary>
         /// Gets or sets The contents of the inline.
         /// </summary>
-        public IList<MarkdownInline> Inlines { get; set; }
+        public List<MarkdownInline> Inlines { get; set; }
     }
 }

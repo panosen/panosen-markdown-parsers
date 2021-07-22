@@ -10,33 +10,38 @@ namespace Panosen.Markdown
     public enum HyperlinkType
     {
         /// <summary>
+        /// None
+        /// </summary>
+        None = 0,
+
+        /// <summary>
         /// A hyperlink surrounded by angle brackets (e.g. "http://www.reddit.com").
         /// </summary>
-        BracketedUrl,
+        BracketedUrl = 1,
 
         /// <summary>
         /// A fully qualified hyperlink (e.g. "http://www.reddit.com").
         /// </summary>
-        FullUrl,
+        FullUrl = 2,
 
         /// <summary>
         /// A URL without a scheme (e.g. "www.reddit.com").
         /// </summary>
-        PartialUrl,
+        PartialUrl = 3,
 
         /// <summary>
         /// An email address (e.g. "test@reddit.com").
         /// </summary>
-        Email,
+        Email = 4,
 
         /// <summary>
         /// A subreddit link (e.g. "/r/news").
         /// </summary>
-        Subreddit,
+        Subreddit = 5,
 
         /// <summary>
         /// A user link (e.g. "/u/quinbd").
         /// </summary>
-        User,
+        User = 6,
     }
 }

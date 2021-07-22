@@ -10,73 +10,78 @@ namespace Panosen.Markdown
     public enum MarkdownInlineType
     {
         /// <summary>
+        /// None
+        /// </summary>
+        None = 0,
+
+        /// <summary>
         /// A comment
         /// </summary>
-        Comment,
+        Comment = 1,
 
         /// <summary>
         /// A text run
         /// </summary>
-        TextRun,
+        TextRun = 2,
 
         /// <summary>
         /// A bold run
         /// </summary>
-        Bold,
+        Bold = 3,
 
         /// <summary>
         /// An italic run
         /// </summary>
-        Italic,
+        Italic = 4,
 
         /// <summary>
         /// A link in markdown syntax
         /// </summary>
-        MarkdownLink,
+        MarkdownLink = 5,
 
         /// <summary>
         /// A raw hyper link
         /// </summary>
-        RawHyperlink,
+        RawHyperlink = 6,
 
         /// <summary>
         /// A raw subreddit link
         /// </summary>
-        RawSubreddit,
+        RawSubreddit = 7,
 
         /// <summary>
         /// A strike through run
         /// </summary>
-        Strikethrough,
+        Strikethrough = 8,
 
         /// <summary>
         /// A superscript run
         /// </summary>
-        Superscript,
+        Superscript = 9,
 
         /// <summary>
         /// A subscript run
         /// </summary>
-        Subscript,
+        Subscript = 10,
 
         /// <summary>
         /// A code run
         /// </summary>
-        Code,
+        Code = 11,
 
         /// <summary>
         /// An image
         /// </summary>
-        Image,
+        Image = 12,
 
         /// <summary>
         /// Emoji
         /// </summary>
-        Emoji,
+        Emoji = 13,
 
         /// <summary>
         /// Link Reference
         /// </summary>
-        LinkReference
+        LinkReference = 14
     }
 }

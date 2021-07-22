@@ -20,6 +20,6 @@ namespace Panosen.Markdown.Blocks
         /// <summary>
         /// Gets or sets the contents of the block.
         /// </summary>
-        public IList<MarkdownBlock> Blocks { get; set; }
+        public List<MarkdownBlock> Blocks { get; set; }
     }
 }

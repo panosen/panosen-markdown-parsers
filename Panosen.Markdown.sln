@@ -1,15 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31205.134
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31423.177
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Panosen.Markdown.Parser", "Panosen.Markdown.Parsers\Panosen.Markdown.Parser.csproj", "{08BB5274-18FD-47C5-9DF2-D4A6778A7EED}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Panosen.Markdown", "Panosen.Markdown\Panosen.Markdown.csproj", "{5E6E9603-46F9-4EF9-B1AB-453D70D1261C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Panosen.Markdown.Render", "Panosen.Markdown.Render\Panosen.Markdown.Render.csproj", "{7FFFD757-0D28-4854-A2B4-6C9ACC4123A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Panosen.Markdown.Render", "Panosen.Markdown.Render\Panosen.Markdown.Render.csproj", "{7FFFD757-0D28-4854-A2B4-6C9ACC4123A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Panosen.Markdown.Helper", "Panosen.Markdown.Helper\Panosen.Markdown.Helper.csproj", "{B12A4135-7673-4D4B-9DA5-F513971F7AE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Panosen.Markdown.Helper", "Panosen.Markdown.Helper\Panosen.Markdown.Helper.csproj", "{B12A4135-7673-4D4B-9DA5-F513971F7AE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Panosen.Markdown.Parser.MSTest", "Panosen.Markdown.Parser.MSTest\Panosen.Markdown.Parser.MSTest.csproj", "{D2B628E3-5007-434C-BD92-3CD932219A38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Panosen.Markdown.Parser2", "Panosen.Markdown.Parser2\Panosen.Markdown.Parser2.csproj", "{923BC7DB-F6B2-4594-ADF5-60540BB1B9C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{B12A4135-7673-4D4B-9DA5-F513971F7AE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B12A4135-7673-4D4B-9DA5-F513971F7AE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B12A4135-7673-4D4B-9DA5-F513971F7AE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2B628E3-5007-434C-BD92-3CD932219A38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2B628E3-5007-434C-BD92-3CD932219A38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2B628E3-5007-434C-BD92-3CD932219A38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2B628E3-5007-434C-BD92-3CD932219A38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{923BC7DB-F6B2-4594-ADF5-60540BB1B9C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{923BC7DB-F6B2-4594-ADF5-60540BB1B9C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{923BC7DB-F6B2-4594-ADF5-60540BB1B9C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{923BC7DB-F6B2-4594-ADF5-60540BB1B9C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

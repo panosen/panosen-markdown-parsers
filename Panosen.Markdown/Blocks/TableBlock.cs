@@ -20,14 +20,14 @@ namespace Panosen.Markdown.Blocks
         /// <summary>
         /// Gets or sets the table rows.
         /// </summary>
-        public IList<TableRow> Rows { get; set; }
+        public List<TableRow> Rows { get; set; }
 
         /// <summary>
         /// Gets or sets describes the columns in the table.  Rows can have more or less cells than the number
         /// of columns.  Rows with fewer cells should be padded with empty cells.  For rows with
         /// more cells, the extra cells should be hidden.
         /// </summary>
-        public IList<TableColumnDefinition> ColumnDefinitions { get; set; }
+        public List<TableColumnDefinition> ColumnDefinitions { get; set; }
     }
 
     /// <summary>
@@ -49,7 +49,7 @@ namespace Panosen.Markdown.Blocks
         /// <summary>
         /// Gets or sets the table cells.
         /// </summary>
-        public IList<TableCell> Cells { get; set; }
+        public List<TableCell> Cells { get; set; }
     }
 
     /// <summary>
@@ -60,6 +60,6 @@ namespace Panosen.Markdown.Blocks
         /// <summary>
         /// Gets or sets the cell contents.
         /// </summary>
-        public IList<MarkdownInline> Inlines { get; set; }
+        public List<MarkdownInline> Inlines { get; set; }
     }
 }

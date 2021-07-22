@@ -62,20 +62,17 @@ namespace Panosen.Markdown.Parser.Inlines
             }
 
             // Extract the alt.
-            string tooltip = markdown.Substring(start + 2, pos - (start + 2));
+            string text = markdown.Substring(start + 2, pos - (start + 2));
 
             // Expect the '(' character.
             pos++;
 
-            string reference = string.Empty;
             string url = string.Empty;
             int imageWidth = 0;
             int imageHeight = 0;
 
             if (pos < end && markdown[pos] == '[')
             {
-                int refStart = pos;
-
                 // Find the reference ']' character
                 while (pos < end)
                 {
@@ -86,8 +83,6 @@ namespace Panosen.Markdown.Parser.Inlines
 
                     pos++;
                 }
-
-                reference = markdown.Substring(refStart + 1, pos - refStart - 1);
             }
             else if (pos < end && markdown[pos] == '(')
             {
@@ -143,11 +138,9 @@ namespace Panosen.Markdown.Parser.Inlines
             // We found something!
             var result = new ImageInline
             {
-                Tooltip = tooltip,
-                RenderUrl = url,
-                ReferenceId = reference,
+                //Tooltip = tooltip,
                 Url = url,
-                Text = markdown.Substring(start, pos + 1 - start),
+                Text = text,
                 ImageWidth = imageWidth,
                 ImageHeight = imageHeight
             };

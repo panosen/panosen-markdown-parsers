@@ -23,22 +23,12 @@ namespace Panosen.Markdown.Inlines
         public string Url { get; set; }
 
         /// <summary>
-        /// Gets or sets the image Render URL.
-        /// </summary>
-        public string RenderUrl { get; set; }
-
-        /// <summary>
         /// Gets or sets a text to display on hover.
         /// </summary>
         public string Tooltip { get; set; }
 
         /// <inheritdoc/>
-        public string Text { get; set; } = string.Empty;
-
-        /// <summary>
-        /// Gets or sets the ID of a reference, if this is a reference-style link.
-        /// </summary>
-        public string ReferenceId { get; set; }
+        public string Text { get; set; }
 
         /// <summary>
         /// Gets image width

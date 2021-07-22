@@ -45,7 +45,7 @@ namespace Panosen.Markdown.Blocks
         /// <summary>
         /// Gets or sets the contents of the block.
         /// </summary>
-        public IList<MarkdownInline> Inlines { get; set; }
+        public List<MarkdownInline> Inlines { get; set; }
 
     }
 }
