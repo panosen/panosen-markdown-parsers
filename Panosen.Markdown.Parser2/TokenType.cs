@@ -7,6 +7,26 @@ namespace Panosen.Markdown.Parser2
     public enum TokenType
     {
         /// <summary>
+        /// 数字
+        /// </summary>
+        Number,
+
+        /// <summary>
+        /// #
+        /// </summary>
+        Hash,
+
+        /// <summary>
+        /// &gt;
+        /// </summary>
+        GreaterThan,
+
+        /// <summary>
+        /// 点
+        /// </summary>
+        Dot,
+
+        /// <summary>
         /// 左 中括号
         /// </summary>
         LeftMiddleBracket,
