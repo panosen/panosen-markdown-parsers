@@ -59,6 +59,11 @@ namespace Panosen.Markdown.Parser2
         /// <summary>
         /// 文本
         /// </summary>
-        Plain
+        Plain,
+
+        /// <summary>
+        /// 换行符 '\n'
+        /// </summary>
+        NextLine
     }
 }

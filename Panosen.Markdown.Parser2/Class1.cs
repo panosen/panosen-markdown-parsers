@@ -8,131 +8,67 @@ namespace Panosen.Markdown.Parser2
 {
     public class Class1
     {
-        public static MarkdownDocument Process(string content)
+        public static MarkdownDocument Process(string text)
         {
             MarkdownDocument markdownDocument = new MarkdownDocument();
 
-            var lines = content.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-
-            foreach (var line in lines)
-            {
-                if (line[0] >= '0' && line[0] <= '9')
-                {
-                    ProcessNumber(markdownDocument, line);
-                    continue;
-                }
-                switch (line[0])
-                {
-                    case '#':
-                        {
-                            ProcessHeader(markdownDocument, line);
-                        }
-                        break;
-                    case '>':
-                        {
-                            markdownDocument
-                                .AddBlock<QuoteBlock>()
-                                .AddBlock<ParagraphBlock>()
-                                .AddInlines(LineParser.ProcessLine(line.Substring(1)));
-                        }
-                        break;
-                    case '*':
-                        {
-                            ProcessStar(markdownDocument, line);
-                        }
-                        break;
-                    default:
-                        {
-                            markdownDocument.AddBlock<ParagraphBlock>().AddInlines(LineParser.ProcessLine(line));
-                        }
-
-                        break;
-                }
-            }
+            var tokens = NewMethod(text);
 
             return markdownDocument;
         }
 
-        private static void ProcessNumber(MarkdownDocument markdownDocument, string line)
+        private static TokenCollection NewMethod(string text)
         {
-            StringBuilder builder = new StringBuilder();
-            int index = 0;
-            while (index < line.Length && char.IsNumber(line[index]))
-            {
-                builder.Append(line[index]);
+            TokenCollection tokens = new TokenCollection();
 
-                index++;
-            }
-            if (index < line.Length && line[index] == '.' && index + 1 < line.Length && line[index + 1] == ' ')
-            {
-                var ol = new ListBlock();
-                ol.Style = ListStyle.Numbered;
-                ol.Items = new List<ListItemBlock>();
-                markdownDocument.AddBlock(ol);
+            var sourceReader = new SourceReader(text);
 
-                var inlines = LineParser.ProcessLine(line.Substring(index + 2));
-
-                //ParagraphBlock paragraphBlock = new ParagraphBlock();
-                //paragraphBlock.Inlines = inlines;
-                //ol.Items.Add(paragraphBlock);
-            }
-            else
+            var ch = sourceReader.Read();
+            while (ch != null)
             {
-                markdownDocument.AddBlock<ParagraphBlock>().AddInlines(LineParser.ProcessLine(line));
+                switch (ch.Value)
+                {
+                    case '#':
+                        tokens.AddToken<HashToken>("#");
+                        break;
+                    case '>':
+                        tokens.AddToken<GreaterThanToken>(">");
+                        break;
+                    case '*':
+                        tokens.AddToken<StarToken>("*");
+                        break;
+                    case '.':
+                        tokens.AddToken<DotToken>(".");
+                        break;
+                    case '[':
+                        tokens.AddToken<LeftMiddleBracketToken>("[");
+                        break;
+                    case ']':
+                        tokens.AddToken<RightMiddleBracketToken>("]");
+                        break;
+                    case '(':
+                        tokens.AddToken<LeftSmallBracktetToken>("(");
+                        break;
+                    case ')':
+                        tokens.AddToken<RightSmallBracketToken>(")");
+                        break;
+                    case '!':
+                        tokens.AddToken<ExcalmatoryToken>("!");
+                        break;
+                    case '\n':
+                        tokens.AddToken<NewLineToken>("\n");
+                        break;
+                    case '\r':
+                        break;
+                    default:
+                        tokens.AddToken<PlainToken>(ch.ToString());
+                        break;
+                }
+
+                ch = sourceReader.Read();
             }
+
+            return tokens;
         }
-
-        private static void ProcessStar(MarkdownDocument markdownDocument, string line)
-        {
-            StringBuilder builder = new StringBuilder();
-            int index = 0;
-            while (index < line.Length && char.IsNumber(line[index]))
-            {
-                builder.Append(line[index]);
-
-                index++;
-            }
-            if (index < line.Length && line[index] == '.' && index + 1 < line.Length && line[index + 1] == ' ')
-            {
-                var ul = new ListBlock();
-                ul.Style = ListStyle.Numbered;
-                ul.Items = new List<ListItemBlock>();
-                markdownDocument.AddBlock(ul);
-
-                var inlines = LineParser.ProcessLine(line.Substring(index + 2));
-
-                //ParagraphBlock paragraphBlock = new ParagraphBlock();
-                //paragraphBlock.Inlines = inlines;
-                //ol.Items.Add(paragraphBlock);
-            }
-            else
-            {
-                markdownDocument.AddBlock<ParagraphBlock>().AddInlines(LineParser.ProcessLine(line));
-            }
-        }
-
-        private static void ProcessHeader(MarkdownDocument markdownDocument, string line)
-        {
-            int level = 1;
-            while (level < Math.Min(line.Length, 6) && line[level] == '#')
-            {
-                level++;
-            }
-            if (level < line.Length && line[level] == ' ')
-            {
-                markdownDocument.AddBlock<HeaderBlock>()
-                    .SetHeaderLevel(level)
-                    .AddInline<TextRunInline>()
-                    .SetText(line.Substring(level));
-            }
-            else
-            {
-                markdownDocument
-                    .AddBlock<ParagraphBlock>()
-                    .AddInlines(LineParser.ProcessLine(line));
-            }
-        }
-
-        
     }
 }
