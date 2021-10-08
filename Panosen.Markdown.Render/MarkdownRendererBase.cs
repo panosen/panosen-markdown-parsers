@@ -230,12 +230,6 @@ namespace Panosen.Markdown.Parsers.Render
             {
                 if (inline is ImageInline imageInline)
                 {
-                    // this is an image, create Image.
-                    if (!string.IsNullOrEmpty(imageInline.ReferenceId))
-                    {
-                        ResolveReference(imageInline, Document);
-                    }
-
                     imageInline.Url = element.Url;
                     RenderImage(imageInline, context);
                     return;
@@ -305,40 +299,6 @@ namespace Panosen.Markdown.Parsers.Render
             }
 
             return null;
-        }
-
-
-        /// <summary>
-        /// If this is a reference-style link, attempts to converts it to a regular link.
-        /// </summary>
-        internal void ResolveReference(ImageInline imageInline, MarkdownDocument document)
-        {
-            if (document == null)
-            {
-                throw new ArgumentNullException("document");
-            }
-
-            if (imageInline.ReferenceId == null)
-            {
-                return;
-            }
-
-            // Look up the reference ID.
-            var reference = LookUpReference(document, imageInline.ReferenceId);
-            if (reference == null)
-            {
-                return;
-            }
-
-            // The reference was found. Check the URL is valid.
-            if (!UrlHelper.IsUrlValid(reference.Url))
-            {
-                return;
-            }
-
-            // Everything is cool when you're part of a team.
-            imageInline.RenderUrl = reference.Url;
-            imageInline.ReferenceId = null;
         }
 
         /// <summary>
