@@ -5,9 +5,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Panosen.Markdown.Parsers.Inlines;
+using Panosen.Markdown.Parser.Inlines;
 
-namespace Panosen.Markdown.Parsers.Helpers
+namespace Panosen.Markdown.Parser.Helpers
 {
     /// <summary>
     /// Helpers for Markdown.
@@ -19,19 +19,19 @@ namespace Panosen.Markdown.Parsers.Helpers
 
         static Common()
         {
-            BoldItalicTextInline.AddTripChars(_triggerList);
-            BoldTextInline.AddTripChars(_triggerList);
-            ItalicTextInline.AddTripChars(_triggerList);
-            MarkdownLinkInline.AddTripChars(_triggerList);
-            HyperlinkInline.AddTripChars(_triggerList);
-            CommentInline.AddTripChars(_triggerList);
-            StrikethroughTextInline.AddTripChars(_triggerList);
-            SuperscriptTextInline.AddTripChars(_triggerList);
-            SubscriptTextInline.AddTripChars(_triggerList);
-            CodeInline.AddTripChars(_triggerList);
-            ImageInline.AddTripChars(_triggerList);
-            EmojiInline.AddTripChars(_triggerList);
-            LinkAnchorInline.AddTripChars(_triggerList);
+            BoldItalicTextInlineParser.AddTripChars(_triggerList);
+            BoldTextInlineParser.AddTripChars(_triggerList);
+            ItalicTextInlineParser.AddTripChars(_triggerList);
+            MarkdownLinkInlineParser.AddTripChars(_triggerList);
+            HyperlinkInlineParser.AddTripChars(_triggerList);
+            CommentInlineParser.AddTripChars(_triggerList);
+            StrikethroughTextInlineParser.AddTripChars(_triggerList);
+            SuperscriptTextInlineParser.AddTripChars(_triggerList);
+            SubscriptTextInlineParser.AddTripChars(_triggerList);
+            CodeInlineParser.AddTripChars(_triggerList);
+            ImageInlineParser.AddTripChars(_triggerList);
+            EmojiInlineParser.AddTripChars(_triggerList);
+            LinkAnchorInlineParser.AddTripChars(_triggerList);
 
             // Create an array of characters to search against using IndexOfAny.
             _tripCharacters = _triggerList.Select(trigger => trigger.FirstChar).Distinct().ToArray();
@@ -57,7 +57,7 @@ namespace Panosen.Markdown.Parsers.Helpers
                 // it into a text run.
                 if (parseResult.Start != currentParsePosition)
                 {
-                    var textRun = TextRunInline.Parse(markdown, currentParsePosition, parseResult.Start);
+                    var textRun = TextRunInlineParser.Parse(markdown, currentParsePosition, parseResult.Start);
                     inlines.Add(textRun);
                 }
 
@@ -109,29 +109,29 @@ namespace Panosen.Markdown.Parsers.Helpers
                         switch (currentTripChar.Method)
                         {
                             case InlineParseMethod.BoldItalic:
-                                parseResult = BoldItalicTextInline.Parse(markdown, pos, end);
+                                parseResult = BoldItalicTextInlineParser.Parse(markdown, pos, end);
                                 break;
 
                             case InlineParseMethod.Comment:
-                                parseResult = CommentInline.Parse(markdown, pos, end);
+                                parseResult = CommentInlineParser.Parse(markdown, pos, end);
                                 break;
 
                             case InlineParseMethod.LinkReference:
-                                parseResult = LinkAnchorInline.Parse(markdown, pos, end);
+                                parseResult = LinkAnchorInlineParser.Parse(markdown, pos, end);
                                 break;
 
                             case InlineParseMethod.Bold:
-                                parseResult = BoldTextInline.Parse(markdown, pos, end);
+                                parseResult = BoldTextInlineParser.Parse(markdown, pos, end);
                                 break;
 
                             case InlineParseMethod.Italic:
-                                parseResult = ItalicTextInline.Parse(markdown, pos, end);
+                                parseResult = ItalicTextInlineParser.Parse(markdown, pos, end);
                                 break;
 
                             case InlineParseMethod.MarkdownLink:
                                 if (!ignoreLinks)
                                 {
-                                    parseResult = MarkdownLinkInline.Parse(markdown, pos, end);
+                                    parseResult = MarkdownLinkInlineParser.Parse(markdown, pos, end);
                                 }
 
                                 break;
@@ -139,7 +139,7 @@ namespace Panosen.Markdown.Parsers.Helpers
                             case InlineParseMethod.AngleBracketLink:
                                 if (!ignoreLinks)
                                 {
-                                    parseResult = HyperlinkInline.ParseAngleBracketLink(markdown, pos, end);
+                                    parseResult = HyperlinkInlineParser.ParseAngleBracketLink(markdown, pos, end);
                                 }
 
                                 break;
@@ -147,7 +147,7 @@ namespace Panosen.Markdown.Parsers.Helpers
                             case InlineParseMethod.Url:
                                 if (!ignoreLinks)
                                 {
-                                    parseResult = HyperlinkInline.ParseUrl(markdown, pos, end);
+                                    parseResult = HyperlinkInlineParser.ParseUrl(markdown, pos, end);
                                 }
 
                                 break;
@@ -155,7 +155,7 @@ namespace Panosen.Markdown.Parsers.Helpers
                             case InlineParseMethod.RedditLink:
                                 if (!ignoreLinks)
                                 {
-                                    parseResult = HyperlinkInline.ParseRedditLink(markdown, pos, end);
+                                    parseResult = HyperlinkInlineParser.ParseRedditLink(markdown, pos, end);
                                 }
 
                                 break;
@@ -163,7 +163,7 @@ namespace Panosen.Markdown.Parsers.Helpers
                             case InlineParseMethod.PartialLink:
                                 if (!ignoreLinks)
                                 {
-                                    parseResult = HyperlinkInline.ParsePartialLink(markdown, pos, end);
+                                    parseResult = HyperlinkInlineParser.ParsePartialLink(markdown, pos, end);
                                 }
 
                                 break;
@@ -171,33 +171,33 @@ namespace Panosen.Markdown.Parsers.Helpers
                             case InlineParseMethod.Email:
                                 if (!ignoreLinks)
                                 {
-                                    parseResult = HyperlinkInline.ParseEmailAddress(markdown, start, pos, end);
+                                    parseResult = HyperlinkInlineParser.ParseEmailAddress(markdown, start, pos, end);
                                 }
 
                                 break;
 
                             case InlineParseMethod.Strikethrough:
-                                parseResult = StrikethroughTextInline.Parse(markdown, pos, end);
+                                parseResult = StrikethroughTextInlineParser.Parse(markdown, pos, end);
                                 break;
 
                             case InlineParseMethod.Superscript:
-                                parseResult = SuperscriptTextInline.Parse(markdown, pos, end);
+                                parseResult = SuperscriptTextInlineParser.Parse(markdown, pos, end);
                                 break;
 
                             case InlineParseMethod.Subscript:
-                                parseResult = SubscriptTextInline.Parse(markdown, pos, end);
+                                parseResult = SubscriptTextInlineParser.Parse(markdown, pos, end);
                                 break;
 
                             case InlineParseMethod.Code:
-                                parseResult = CodeInline.Parse(markdown, pos, end);
+                                parseResult = CodeInlineParser.Parse(markdown, pos, end);
                                 break;
 
                             case InlineParseMethod.Image:
-                                parseResult = ImageInline.Parse(markdown, pos, end);
+                                parseResult = ImageInlineParser.Parse(markdown, pos, end);
                                 break;
 
                             case InlineParseMethod.Emoji:
-                                parseResult = EmojiInline.Parse(markdown, pos, end);
+                                parseResult = EmojiInlineParser.Parse(markdown, pos, end);
                                 break;
                         }
 
@@ -211,7 +211,7 @@ namespace Panosen.Markdown.Parsers.Helpers
 
             // If we didn't find any elements we have a normal text block.
             // Let us consume the entire range.
-            return new InlineParseResult(TextRunInline.Parse(markdown, start, end), start, end);
+            return new InlineParseResult(TextRunInlineParser.Parse(markdown, start, end), start, end);
         }
 
         /// <summary>
@@ -507,29 +507,6 @@ namespace Panosen.Markdown.Parsers.Helpers
             return startOfLine;
         }
 
-        /// <summary>
-        /// Checks if the given URL is allowed in a markdown link.
-        /// </summary>
-        /// <param name="url"> The URL to check. </param>
-        /// <returns> <c>true</c> if the URL is valid; <c>false</c> otherwise. </returns>
-        public static bool IsUrlValid(string url)
-        {
-            // URLs can be relative.
-            if (!Uri.TryCreate(url, UriKind.Absolute, out Uri result))
-            {
-                return true;
-            }
 
-            // Check the scheme is allowed.
-            foreach (var scheme in MarkdownDocument.KnownSchemes)
-            {
-                if (result.Scheme.Equals(scheme))
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
     }
 }

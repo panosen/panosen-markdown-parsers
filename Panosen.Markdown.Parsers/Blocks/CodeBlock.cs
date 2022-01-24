@@ -3,36 +3,17 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Text;
-using Panosen.Markdown.Parsers.Helpers;
+using Panosen.Markdown.Blocks;
+using Panosen.Markdown.Parser.Helpers;
 
-namespace Panosen.Markdown.Parsers.Blocks
+namespace Panosen.Markdown.Parser.Blocks
 {
     /// <summary>
     /// Represents a block of text that is displayed in a fixed-width font.  Inline elements and
     /// escape sequences are ignored inside the code block.
     /// </summary>
-    public class CodeBlock : MarkdownBlock
+    public class CodeBlockParser
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CodeBlock"/> class.
-        /// </summary>
-        public CodeBlock()
-            : base(MarkdownBlockType.Code)
-        {
-        }
-
-        /// <summary>
-        /// Gets or sets the source code to display.
-        /// </summary>
-        public string Text { get; set; }
-
-        /// <summary>
-        /// Gets or sets the Language specified in prefix, e.g. ```c# (GitHub Style Parsing).<para/>
-        /// This does not guarantee that the Code Block has a language, or no language, some valid code might not have been prefixed, and this will still return null. <para/>
-        /// To ensure all Code is Highlighted (If desired), you might have to determine the language from the provided string, such as looking for key words.
-        /// </summary>
-        public string CodeLanguage { get; set; }
-
         /// <summary>
         /// Parses a code block.
         /// </summary>
@@ -182,15 +163,6 @@ namespace Panosen.Markdown.Parsers.Blocks
                 Text = code.ToString().Trim('\r', '\n'),
                 CodeLanguage = !string.IsNullOrWhiteSpace(codeLanguage) ? codeLanguage.Trim() : null
             };
-        }
-
-        /// <summary>
-        /// Converts the object into it's textual representation.
-        /// </summary>
-        /// <returns> The textual representation of this object. </returns>
-        public override string ToString()
-        {
-            return Text;
         }
     }
 }

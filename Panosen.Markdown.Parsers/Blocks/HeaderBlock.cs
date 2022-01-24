@@ -4,54 +4,19 @@
 
 using System;
 using System.Collections.Generic;
-using Panosen.Markdown.Parsers.Helpers;
-using Panosen.Markdown.Parsers.Inlines;
+using Panosen.Markdown.Blocks;
+using Panosen.Markdown.Parser.Helpers;
+using Panosen.Markdown.Parser.Inlines;
 
-namespace Panosen.Markdown.Parsers.Blocks
+namespace Panosen.Markdown.Parser.Blocks
 {
     /// <summary>
     /// Represents a heading.
     /// <seealso href="https://spec.commonmark.org/0.29/#atx-headings">Single-Line Header CommonMark Spec</seealso>
     /// <seealso href="https://spec.commonmark.org/0.29/#setext-headings">Two-Line Header CommonMark Spec</seealso>
     /// </summary>
-    public class HeaderBlock : MarkdownBlock
+    public class HeaderBlockParser
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="HeaderBlock"/> class.
-        /// </summary>
-        public HeaderBlock()
-            : base(MarkdownBlockType.Header)
-        {
-        }
-
-        private int _headerLevel;
-
-        /// <summary>
-        /// Gets or sets the header level (1-6).  1 is the most important header, 6 is the least important.
-        /// </summary>
-        public int HeaderLevel
-        {
-            get
-            {
-                return _headerLevel;
-            }
-
-            set
-            {
-                if (value < 1 || value > 6)
-                {
-                    throw new ArgumentOutOfRangeException("HeaderLevel", "The header level must be between 1 and 6 (inclusive).");
-                }
-
-                _headerLevel = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the contents of the block.
-        /// </summary>
-        public IList<MarkdownInline> Inlines { get; set; }
-
         /// <summary>
         /// Parses a header that starts with a hash.
         /// </summary>
@@ -149,20 +114,6 @@ namespace Panosen.Markdown.Parsers.Blocks
             // Parse the inline content.
             result.Inlines = Common.ParseInlineChildren(markdown, firstLineStart, firstLineEnd);
             return result;
-        }
-
-        /// <summary>
-        /// Converts the object into it's textual representation.
-        /// </summary>
-        /// <returns> The textual representation of this object. </returns>
-        public override string ToString()
-        {
-            if (Inlines == null)
-            {
-                return base.ToString();
-            }
-
-            return string.Join(string.Empty, Inlines);
         }
     }
 }

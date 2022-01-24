@@ -3,38 +3,16 @@
 // See the LICENSE file in the project root for more information.
 
 using Microsoft.Toolkit.Parsers.Core;
-using Panosen.Markdown.Parsers.Inlines;
+using Panosen.Markdown.Blocks;
+using Panosen.Markdown.Parser.Inlines;
 
-namespace Panosen.Markdown.Parsers.Blocks
+namespace Panosen.Markdown.Parser.Blocks
 {
     /// <summary>
     /// Represents the target of a reference ([ref][]).
     /// </summary>
-    public class LinkReferenceBlock : MarkdownBlock
+    public class LinkReferenceBlockParser
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="LinkReferenceBlock"/> class.
-        /// </summary>
-        public LinkReferenceBlock()
-            : base(MarkdownBlockType.LinkReference)
-        {
-        }
-
-        /// <summary>
-        /// Gets or sets the reference ID.
-        /// </summary>
-        public string Id { get; set; }
-
-        /// <summary>
-        /// Gets or sets the link URL.
-        /// </summary>
-        public string Url { get; set; }
-
-        /// <summary>
-        /// Gets or sets a tooltip to display on hover.
-        /// </summary>
-        public string Tooltip { get; set; }
-
         /// <summary>
         /// Attempts to parse a reference e.g. "[example]: http://www.reddit.com 'title'".
         /// </summary>
@@ -96,7 +74,7 @@ namespace Panosen.Markdown.Parsers.Blocks
                 pos++;
             }
 
-            string url = TextRunInline.ResolveEscapeSequences(markdown, urlStart, pos);
+            string url = TextRunInlineParser.ResolveEscapeSequences(markdown, urlStart, pos);
 
             // Ignore leading '<' and trailing '>'.
             url = url.TrimStart('<').TrimEnd('>');
@@ -161,15 +139,6 @@ namespace Panosen.Markdown.Parsers.Blocks
             result.Url = url;
             result.Tooltip = tooltip;
             return result;
-        }
-
-        /// <summary>
-        /// Converts the object into it's textual representation.
-        /// </summary>
-        /// <returns> The textual representation of this object. </returns>
-        public override string ToString()
-        {
-            return string.Format("[{0}]: {1} {2}", Id, Url, Tooltip);
         }
     }
 }

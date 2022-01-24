@@ -3,29 +3,17 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Collections.Generic;
-using Panosen.Markdown.Parsers.Helpers;
-using Panosen.Markdown.Parsers.Inlines;
+using Panosen.Markdown.Blocks;
+using Panosen.Markdown.Parser.Helpers;
+using Panosen.Markdown.Parser.Inlines;
 
-namespace Panosen.Markdown.Parsers.Blocks
+namespace Panosen.Markdown.Parser.Blocks
 {
     /// <summary>
     /// Represents a block of text that is displayed as a single paragraph.
     /// </summary>
-    public class ParagraphBlock : MarkdownBlock
+    public class ParagraphBlockParser
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ParagraphBlock"/> class.
-        /// </summary>
-        public ParagraphBlock()
-            : base(MarkdownBlockType.Paragraph)
-        {
-        }
-
-        /// <summary>
-        /// Gets or sets the contents of the block.
-        /// </summary>
-        public IList<MarkdownInline> Inlines { get; set; }
-
         /// <summary>
         /// Parses paragraph text.
         /// </summary>
@@ -36,20 +24,6 @@ namespace Panosen.Markdown.Parsers.Blocks
             var result = new ParagraphBlock();
             result.Inlines = Common.ParseInlineChildren(markdown, 0, markdown.Length);
             return result;
-        }
-
-        /// <summary>
-        /// Converts the object into it's textual representation.
-        /// </summary>
-        /// <returns> The textual representation of this object. </returns>
-        public override string ToString()
-        {
-            if (Inlines == null)
-            {
-                return base.ToString();
-            }
-
-            return string.Join(string.Empty, Inlines);
         }
     }
 }

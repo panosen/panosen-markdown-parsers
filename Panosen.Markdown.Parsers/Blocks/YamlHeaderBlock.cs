@@ -4,9 +4,10 @@
 
 using System;
 using System.Collections.Generic;
-using Panosen.Markdown.Parsers.Helpers;
+using Panosen.Markdown.Blocks;
+using Panosen.Markdown.Parser.Helpers;
 
-namespace Panosen.Markdown.Parsers.Blocks
+namespace Panosen.Markdown.Parser.Blocks
 {
     /// <summary>
     /// Yaml Header. use for blog.
@@ -16,21 +17,8 @@ namespace Panosen.Markdown.Parsers.Blocks
     /// tag: something
     /// ---
     /// </summary>
-    public class YamlHeaderBlock : MarkdownBlock
+    public class YamlHeaderBlockParser
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="YamlHeaderBlock"/> class.
-        /// </summary>
-        public YamlHeaderBlock()
-            : base(MarkdownBlockType.YamlHeader)
-        {
-        }
-
-        /// <summary>
-        /// Gets or sets yaml header properties
-        /// </summary>
-        public Dictionary<string, string> Children { get; set; }
-
         /// <summary>
         /// Parse yaml header
         /// </summary>
@@ -135,29 +123,6 @@ namespace Panosen.Markdown.Parsers.Blocks
 
             realEndIndex = pos + 3;
             return result;
-        }
-
-        /// <summary>
-        /// Converts the object into it's textual representation.
-        /// </summary>
-        /// <returns> The textual representation of this object. </returns>
-        public override string ToString()
-        {
-            if (Children == null)
-            {
-                return base.ToString();
-            }
-            else
-            {
-                string result = string.Empty;
-                foreach (KeyValuePair<string, string> item in Children)
-                {
-                    result += item.Key + ": " + item.Value + "\n";
-                }
-
-                result.TrimEnd('\n');
-                return result;
-            }
         }
     }
 }

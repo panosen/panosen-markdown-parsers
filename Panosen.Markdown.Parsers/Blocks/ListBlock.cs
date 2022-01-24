@@ -5,39 +5,19 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using Microsoft.Toolkit.Parsers.Core;
-using Panosen.Markdown.Parsers.Helpers;
+using Panosen.Markdown.Blocks;
+using Panosen.Markdown.Parser.Helpers;
 
-[assembly: InternalsVisibleTo("UnitTests.UWP, PublicKey=002400000480000094000000060200000024000052534131000400000100010041753af735ae6140c9508567666c51c6ab929806adb0d210694b30ab142a060237bc741f9682e7d8d4310364b4bba4ee89cc9d3d5ce7e5583587e8ea44dca09977996582875e71fb54fa7b170798d853d5d8010b07219633bdb761d01ac924da44576d6180cdceae537973982bb461c541541d58417a3794e34f45e6f2d129e2")]
-
-namespace Panosen.Markdown.Parsers.Blocks
+namespace Panosen.Markdown.Parser.Blocks
 {
     /// <summary>
     /// Represents a list, with each list item proceeded by either a number or a bullet.
     /// </summary>
-    public class ListBlock : MarkdownBlock
+    public class ListBlockParser
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ListBlock"/> class.
-        /// </summary>
-        public ListBlock()
-            : base(MarkdownBlockType.List)
-        {
-        }
-
-        /// <summary>
-        /// Gets or sets the list items.
-        /// </summary>
-        public IList<ListItemBlock> Items { get; set; }
-
-        /// <summary>
-        /// Gets or sets the style of the list, either numbered or bulleted.
-        /// </summary>
-        public ListStyle Style { get; set; }
-
         /// <summary>
         /// Parses a list block.
         /// </summary>
@@ -341,7 +321,7 @@ namespace Panosen.Markdown.Parsers.Blocks
                         {
                             // Parse the list item as a series of blocks.
                             int actualEnd;
-                            newBlockList.AddRange(MarkdownDocument.Parse(blockText, 0, blockText.Length, quoteDepth: 0, actualEnd: out actualEnd));
+                            newBlockList.AddRange(MarkdownDocumentParser.Parse(blockText, 0, blockText.Length, quoteDepth: 0, actualEnd: out actualEnd));
                             usedBlockParser = true;
                         }
                         else
@@ -362,44 +342,6 @@ namespace Panosen.Markdown.Parsers.Blocks
             }
 
             return usedBlockParser;
-        }
-
-        /// <summary>
-        /// Converts the object into it's textual representation.
-        /// </summary>
-        /// <returns> The textual representation of this object. </returns>
-        public override string ToString()
-        {
-            if (Items == null)
-            {
-                return base.ToString();
-            }
-
-            var result = new StringBuilder();
-            for (int i = 0; i < Items.Count; i++)
-            {
-                if (result.Length > 0)
-                {
-                    result.AppendLine();
-                }
-
-                switch (Style)
-                {
-                    case ListStyle.Bulleted:
-                        result.Append("* ");
-                        break;
-
-                    case ListStyle.Numbered:
-                        result.Append(i + 1);
-                        result.Append(".");
-                        break;
-                }
-
-                result.Append(" ");
-                result.Append(string.Join("\r\n", Items[i].Blocks));
-            }
-
-            return result.ToString();
         }
     }
 }
