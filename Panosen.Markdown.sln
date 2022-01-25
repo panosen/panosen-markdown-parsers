@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Panosen.Markdown.Helper", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Panosen.Markdown.Parsers.MSTest", "Panosen.Markdown.Parsers.MSTest\Panosen.Markdown.Parsers.MSTest.csproj", "{D2B628E3-5007-434C-BD92-3CD932219A38}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Panosen.Markdown.Parser2", "Panosen.Markdown.Parser2\Panosen.Markdown.Parser2.csproj", "{5F3777B9-7B51-4014-ABBE-D28C88212929}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{D2B628E3-5007-434C-BD92-3CD932219A38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2B628E3-5007-434C-BD92-3CD932219A38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2B628E3-5007-434C-BD92-3CD932219A38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F3777B9-7B51-4014-ABBE-D28C88212929}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F3777B9-7B51-4014-ABBE-D28C88212929}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F3777B9-7B51-4014-ABBE-D28C88212929}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F3777B9-7B51-4014-ABBE-D28C88212929}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

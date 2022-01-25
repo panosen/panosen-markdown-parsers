@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>net472;netstandard2.0</TargetFrameworks>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Panosen.Collections" Version="0.6.2" />
+        <PackageReference Include="Panosen.Compling.LL1" Version="0.2.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Panosen.Markdown\Panosen.Markdown.csproj" />
+    </ItemGroup>
+
+</Project>

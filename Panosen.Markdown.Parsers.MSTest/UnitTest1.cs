@@ -13,14 +13,14 @@ namespace Panosen.Markdown.Parser.MSTest
         {
             var markdown = PrepareMarkdown();
 
-            var expected = new MarkdownDocumentParser().Parse(markdown);
-            var actual = @"";
+            var fromParsers = new MarkdownDocumentParser().Parse(markdown);
+            var fromParsers2 = new Panosen.Markdown.Parser2.MarkdownDocumentParser();
 
-            File.WriteAllText("f:\\actual.json", JsonConvert.SerializeObject(actual, Formatting.Indented));
-            File.WriteAllText("f:\\expected.json", JsonConvert.SerializeObject(expected, Formatting.Indented));
+            File.WriteAllText("f:\\Panosen.Markdown.Parser.json", JsonConvert.SerializeObject(fromParsers, Formatting.Indented));
+            File.WriteAllText("f:\\Panosen.Markdown.Parser2.json", JsonConvert.SerializeObject(fromParsers2, Formatting.Indented));
         }
 
-        private static string PrepareMarkdown()
+        public static string PrepareMarkdown()
         {
             return @"1.标题
 # 一级标题
