@@ -17,71 +17,71 @@ namespace Panosen.Markdown
         /// <summary>
         /// A comment
         /// </summary>
-        Comment = 1,
+        Comment = 201,
 
         /// <summary>
         /// A text run
         /// </summary>
-        TextRun = 2,
+        TextRun = 202,
 
         /// <summary>
         /// A bold run
         /// </summary>
-        Bold = 3,
+        Bold = 203,
 
         /// <summary>
         /// An italic run
         /// </summary>
-        Italic = 4,
+        Italic = 204,
 
         /// <summary>
         /// A link in markdown syntax
         /// </summary>
-        MarkdownLink = 5,
+        MarkdownLink = 205,
 
         /// <summary>
         /// A raw hyper link
         /// </summary>
-        RawHyperlink = 6,
+        RawHyperlink = 206,
 
         /// <summary>
         /// A raw subreddit link
         /// </summary>
-        RawSubreddit = 7,
+        RawSubreddit = 207,
 
         /// <summary>
         /// A strike through run
         /// </summary>
-        Strikethrough = 8,
+        Strikethrough = 208,
 
         /// <summary>
         /// A superscript run
         /// </summary>
-        Superscript = 9,
+        Superscript = 209,
 
         /// <summary>
         /// A subscript run
         /// </summary>
-        Subscript = 10,
+        Subscript = 210,
 
         /// <summary>
         /// A code run
         /// </summary>
-        Code = 11,
+        Code = 211,
 
         /// <summary>
         /// An image
         /// </summary>
-        Image = 12,
+        Image = 212,
 
         /// <summary>
         /// Emoji
         /// </summary>
-        Emoji = 13,
+        Emoji = 213,
 
         /// <summary>
         /// Link Reference
         /// </summary>
-        LinkReference = 14
+        LinkReference = 214
     }
 }

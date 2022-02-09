@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Panosen.CodeDom.Tag.Core" Version="0.4.3" />
+    <PackageReference Include="Panosen.CodeDom.Tag.Html.Engine" Version="0.4.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Panosen.Markdown.Helper\Panosen.Markdown.Helper.csproj" />
     <ProjectReference Include="..\Panosen.Markdown\Panosen.Markdown.csproj" />
   </ItemGroup>

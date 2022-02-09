@@ -17,31 +17,31 @@ namespace Panosen.Markdown
         /// <summary>
         /// A hyperlink surrounded by angle brackets (e.g. "http://www.reddit.com").
         /// </summary>
-        BracketedUrl = 1,
+        BracketedUrl = 301,
 
         /// <summary>
         /// A fully qualified hyperlink (e.g. "http://www.reddit.com").
         /// </summary>
-        FullUrl = 2,
+        FullUrl = 302,
 
         /// <summary>
         /// A URL without a scheme (e.g. "www.reddit.com").
         /// </summary>
-        PartialUrl = 3,
+        PartialUrl = 303,
 
         /// <summary>
         /// An email address (e.g. "test@reddit.com").
         /// </summary>
-        Email = 4,
+        Email = 304,
 
         /// <summary>
         /// A subreddit link (e.g. "/r/news").
         /// </summary>
-        Subreddit = 5,
+        Subreddit = 305,
 
         /// <summary>
         /// A user link (e.g. "/u/quinbd").
         /// </summary>
-        User = 6,
+        User = 306,
     }
 }

@@ -20,6 +20,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Panosen.Markdown.Parser2\Panosen.Markdown.Parser2.csproj" />
     <ProjectReference Include="..\Panosen.Markdown.Parsers\Panosen.Markdown.Parsers.csproj" />
+    <ProjectReference Include="..\Panosen.Markdown.Render\Panosen.Markdown.Render.csproj" />
   </ItemGroup>
 
 </Project>

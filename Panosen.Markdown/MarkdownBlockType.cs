@@ -10,58 +10,63 @@ namespace Panosen.Markdown
     public enum MarkdownBlockType
     {
         /// <summary>
+        /// None
+        /// </summary>
+        None = 0,
+
+        /// <summary>
         /// The root element
         /// </summary>
-        Root,
+        Root = 101,
 
         /// <summary>
         /// A paragraph element.
         /// </summary>
-        Paragraph,
+        Paragraph = 102,
 
         /// <summary>
         /// A quote block
         /// </summary>
-        Quote,
+        Quote = 103,
 
         /// <summary>
         /// A code block
         /// </summary>
-        Code,
+        Code = 104,
 
         /// <summary>
         /// A header block
         /// </summary>
-        Header,
+        Header = 105,
 
         /// <summary>
         /// A list block
         /// </summary>
-        List,
+        List = 106,
 
         /// <summary>
         /// A list item block
         /// </summary>
-        ListItemBuilder,
+        ListItemBuilder = 107,
 
         /// <summary>
         /// a horizontal rule block
         /// </summary>
-        HorizontalRule,
+        HorizontalRule = 108,
 
         /// <summary>
         /// A table block
         /// </summary>
-        Table,
+        Table = 109,
 
         /// <summary>
         /// A link block
         /// </summary>
-        LinkReference,
+        LinkReference = 110,
 
         /// <summary>
         /// A Yaml header block
         /// </summary>
-        YamlHeader
+        YamlHeader = 111
     }
 }
