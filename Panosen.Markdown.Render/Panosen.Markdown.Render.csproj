@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Panosen.CodeDom.Tag.Core" Version="0.4.5" />
-    <PackageReference Include="Panosen.CodeDom.Tag.Html.Engine" Version="0.4.4" />
+    <PackageReference Include="Panosen.CodeDom.Tag.Html.Engine" Version="0.4.5" />
   </ItemGroup>
 
   <ItemGroup>
